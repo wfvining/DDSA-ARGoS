@@ -188,20 +188,17 @@ void DSA_controller::ControlStep() {
 
     // argos::LOG << DSA << " : " << GetTarget() << std::endl;
 
-//   if(SimulationTick() / SimulationTicksPerSecond()  % 3 == 0) 
-// {
-//           CVector3 position3d(GetPosition().GetX(), GetPosition().GetY(), 0.00);          
-// 	  CVector3 target3d(previous_position.GetX(), previous_position.GetY(), 0.00);
-//           CRay3 targetRay(target3d, position3d);
-//           myTrail.push_back(targetRay);
 
-// 	  loopFunctions->TargetRayList.push_back(targetRay);
-// 	  loopFunctions->TargetRayColorList.push_back(TrailColor);
+           CVector3 position3d(GetPosition().GetX(), GetPosition().GetY(), 0.00);          
+ 	  CVector3 target3d(previous_position.GetX(), previous_position.GetY(), 0.00);
+           CRay3 targetRay(target3d, position3d);
+           myTrail.push_back(targetRay);
 
-//             //LOG << myTrail.size() << endl;
-// 	  previous_position = GetPosition();
-//   }
+ 	  loopFunctions->TargetRayList.push_back(targetRay);
+ 	  loopFunctions->TargetRayColorList.push_back(TrailColor);
 
+             //LOG << myTrail.size() << endl;
+ 	  previous_position = GetPosition();
 
 	/* Checks if the robot found a food */
 	SetHoldingFood();
@@ -221,6 +218,7 @@ void DSA_controller::ControlStep() {
     } else if(IsHoldingFood() == false && DSA == RETURN_TO_SEARCH) {
 
         if((GetPosition() - ReturnPosition).SquareLength() < loopFunctions->NestRadiusSquared) {
+	  //tempPattern.push_back(direction_last); // Add the not-yet completed pattern step back 
             DSA = SEARCHING;
         }
 
@@ -234,7 +232,6 @@ void DSA_controller::ControlStep() {
  *****/
 void DSA_controller::SetTargetN(char x){
     CVector2 position = GetTarget();
-    previous_target = position;
     SetTarget(CVector2(position.GetX()+SearcherGap,position.GetY()));
 }
 
@@ -243,7 +240,6 @@ void DSA_controller::SetTargetN(char x){
  *****/
 void DSA_controller::SetTargetS(char x){
     CVector2 position = GetTarget();
-    previous_target = position;
     SetTarget(CVector2(position.GetX()-SearcherGap,position.GetY()));
 }
 
@@ -252,7 +248,6 @@ void DSA_controller::SetTargetS(char x){
  *****/
 void DSA_controller::SetTargetE(char x){
    CVector2 position = GetTarget();
-   previous_target = position;
    SetTarget(CVector2(position.GetX(),position.GetY()-SearcherGap));
 }
 
@@ -261,7 +256,6 @@ void DSA_controller::SetTargetE(char x){
  *****/
 void DSA_controller::SetTargetW(char x){
     CVector2 position = GetTarget();
-    previous_target = position;
     SetTarget(CVector2(position.GetX(),position.GetY()+SearcherGap));
 }
 
@@ -272,14 +266,14 @@ void DSA_controller::SetTargetW(char x){
  *****/
  void DSA_controller::GetTargets(){
 
-    /* Finds the last direction of the pattern. */
-    char direction_last = tempPattern[tempPattern.size() - 1]; 
-   
-    /* If the robot hit target and the patter size >0
+   /* If the robot hit target and the patter size >0
        then find the next direction. */
     if(TargetHit() == true && tempPattern.size() > 0) {
-        tempPattern.pop_back();
-
+      /* Finds the last direction of the pattern. */
+    direction_last = tempPattern[tempPattern.size() - 1]; 
+    previous_pattern_position = GetTarget();
+      tempPattern.pop_back();
+	
         switch(direction_last)
         {
             case 'N':
@@ -336,10 +330,9 @@ void DSA_controller::SetHoldingFood(){
         for (i = 0; i < loopFunctions->FoodList.size(); i++){
             if ((GetPosition()-loopFunctions->FoodList[i]).SquareLength() < FoodDistanceTolerance){
                 isHoldingFood = true;
-                ResetReturnPosition = false;
-                //ReturnPosition = GetTarget();
+		ReturnPosition = GetTarget();
 
-		ReturnPosition = previous_target;
+		//ReturnPosition = previous_pattern_position; // Return to the position in the search where interrupted
 		
                 SetTarget(loopFunctions->NestPosition);
                 //if(ResetReturnPosition == true) {
@@ -354,7 +347,7 @@ void DSA_controller::SetHoldingFood(){
     } else if(IsHoldingFood() == true) {
     	if((GetPosition()-loopFunctions->NestPosition).SquareLength() < loopFunctions->NestRadiusSquared) {
     		isHoldingFood = false;
-            ResetReturnPosition = true;
+            
     		DSA = RETURN_TO_SEARCH;
     		SetTarget(ReturnPosition);
     	}

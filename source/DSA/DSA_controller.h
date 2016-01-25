@@ -51,6 +51,7 @@ class DSA_controller : public BaseController {
         Real                SearcherGap;
         Real                FoodDistanceTolerance;
         size_t				collisionCounter;
+	CVector2            previous_position;
 	CVector2            previous_target;
 	CVector2            newTarget;
         CVector3            startPosition;
@@ -65,7 +66,8 @@ class DSA_controller : public BaseController {
         CRange<CRadians>    Tolerance;
         size_t              stopTimeStep;
         size_t              collisionDelay;
-    
+	char direction_last;
+
         /* movement functions */
         CDegrees angleInDegrees;
 
@@ -80,7 +82,7 @@ class DSA_controller : public BaseController {
         bool TargetHit();
         void SetHoldingFood(); 
 
-	CVector2 previous_position;
+	CVector2 previous_pattern_position;
 };
 
 #endif /* DSA_CONTROLLER_H */
