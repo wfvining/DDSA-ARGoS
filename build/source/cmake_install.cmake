@@ -1,4 +1,4 @@
-# Install script for directory: /Users/matthew/Desktop/iAnt-ARGoS/source
+# Install script for directory: /Users/matthew/Desktop/DDSA-ARGoS/source
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -29,9 +29,8 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Users/matthew/Desktop/iAnt-ARGoS/build/source/iAntBase/cmake_install.cmake")
-  include("/Users/matthew/Desktop/iAnt-ARGoS/build/source/CPFA/cmake_install.cmake")
-  include("/Users/matthew/Desktop/iAnt-ARGoS/build/source/DSA/cmake_install.cmake")
+  include("/Users/matthew/Desktop/DDSA-ARGoS/build/source/Base/cmake_install.cmake")
+  include("/Users/matthew/Desktop/DDSA-ARGoS/build/source/DSA/cmake_install.cmake")
 
 endif()
 

@@ -1,1 +1,1 @@
-echo argos3 -c experiments/DSA.xml
+argos3 -c experiments/DSA.xml

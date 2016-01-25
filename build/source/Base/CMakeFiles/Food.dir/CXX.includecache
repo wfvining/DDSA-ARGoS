@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/matthew/Desktop/DDSA-ARGoS/source/Base/Food.cpp
+Food.h
+/Users/matthew/Desktop/DDSA-ARGoS/source/Base/Food.h
+
+/Users/matthew/Desktop/DDSA-ARGoS/source/Base/Food.h
+

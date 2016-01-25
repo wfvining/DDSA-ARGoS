@@ -48,10 +48,10 @@ RM = /usr/local/Cellar/cmake/3.4.2/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/matthew/Desktop/iAnt-ARGoS
+CMAKE_SOURCE_DIR = /Users/matthew/Desktop/DDSA-ARGoS
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/matthew/Desktop/iAnt-ARGoS/build
+CMAKE_BINARY_DIR = /Users/matthew/Desktop/DDSA-ARGoS/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,14 +80,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /Users/matthew/Desktop/iAnt-ARGoS/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/matthew/Desktop/iAnt-ARGoS/build/CMakeFiles /Users/matthew/Desktop/iAnt-ARGoS/build/source/CMakeFiles/progress.marks
-	cd /Users/matthew/Desktop/iAnt-ARGoS/build && $(MAKE) -f CMakeFiles/Makefile2 source/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/matthew/Desktop/iAnt-ARGoS/build/CMakeFiles 0
+	cd /Users/matthew/Desktop/DDSA-ARGoS/build && $(CMAKE_COMMAND) -E cmake_progress_start /Users/matthew/Desktop/DDSA-ARGoS/build/CMakeFiles /Users/matthew/Desktop/DDSA-ARGoS/build/source/CMakeFiles/progress.marks
+	cd /Users/matthew/Desktop/DDSA-ARGoS/build && $(MAKE) -f CMakeFiles/Makefile2 source/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/matthew/Desktop/DDSA-ARGoS/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /Users/matthew/Desktop/iAnt-ARGoS/build && $(MAKE) -f CMakeFiles/Makefile2 source/clean
+	cd /Users/matthew/Desktop/DDSA-ARGoS/build && $(MAKE) -f CMakeFiles/Makefile2 source/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,17 +97,17 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /Users/matthew/Desktop/iAnt-ARGoS/build && $(MAKE) -f CMakeFiles/Makefile2 source/preinstall
+	cd /Users/matthew/Desktop/DDSA-ARGoS/build && $(MAKE) -f CMakeFiles/Makefile2 source/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /Users/matthew/Desktop/iAnt-ARGoS/build && $(MAKE) -f CMakeFiles/Makefile2 source/preinstall
+	cd /Users/matthew/Desktop/DDSA-ARGoS/build && $(MAKE) -f CMakeFiles/Makefile2 source/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /Users/matthew/Desktop/iAnt-ARGoS/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/matthew/Desktop/DDSA-ARGoS/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Help Target
@@ -129,6 +129,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /Users/matthew/Desktop/iAnt-ARGoS/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/matthew/Desktop/DDSA-ARGoS/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

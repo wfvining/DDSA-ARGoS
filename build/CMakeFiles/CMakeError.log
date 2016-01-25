@@ -1,18 +1,18 @@
 Determining if the Q_WS_X11 exist failed with the following output:
-Change Dir: /Users/matthew/Desktop/iAnt-ARGoS/build/CMakeFiles/CMakeTmp
+Change Dir: /Users/matthew/Desktop/DDSA-ARGoS/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_a78b1/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_a78b1.dir/build.make CMakeFiles/cmTC_a78b1.dir/build
-Building CXX object CMakeFiles/cmTC_a78b1.dir/CheckSymbolExists.cxx.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -I/usr/local/Cellar/qt/4.8.7_2/include -F/usr/local/Cellar/qt/4.8.7_2/lib   -o CMakeFiles/cmTC_a78b1.dir/CheckSymbolExists.cxx.o -c /Users/matthew/Desktop/iAnt-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
-/Users/matthew/Desktop/iAnt-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: error: use of undeclared identifier 'Q_WS_X11'
+Run Build Command:"/usr/bin/make" "cmTC_15aa8/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_15aa8.dir/build.make CMakeFiles/cmTC_15aa8.dir/build
+Building CXX object CMakeFiles/cmTC_15aa8.dir/CheckSymbolExists.cxx.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -I/usr/local/Cellar/qt/4.8.7_2/include -F/usr/local/Cellar/qt/4.8.7_2/lib   -o CMakeFiles/cmTC_15aa8.dir/CheckSymbolExists.cxx.o -c /Users/matthew/Desktop/DDSA-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+/Users/matthew/Desktop/DDSA-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: error: use of undeclared identifier 'Q_WS_X11'
   return ((int*)(&Q_WS_X11))[argc];
                   ^
 1 error generated.
-make[1]: *** [CMakeFiles/cmTC_a78b1.dir/CheckSymbolExists.cxx.o] Error 1
-make: *** [cmTC_a78b1/fast] Error 2
+make[1]: *** [CMakeFiles/cmTC_15aa8.dir/CheckSymbolExists.cxx.o] Error 1
+make: *** [cmTC_15aa8/fast] Error 2
 
-File /Users/matthew/Desktop/iAnt-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+File /Users/matthew/Desktop/DDSA-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
 /* */
 #include <QtCore/qglobal.h>
 
@@ -28,20 +28,20 @@ int main(int argc, char** argv)
 }
 
 Determining if the Q_WS_WIN exist failed with the following output:
-Change Dir: /Users/matthew/Desktop/iAnt-ARGoS/build/CMakeFiles/CMakeTmp
+Change Dir: /Users/matthew/Desktop/DDSA-ARGoS/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_f29cf/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_f29cf.dir/build.make CMakeFiles/cmTC_f29cf.dir/build
-Building CXX object CMakeFiles/cmTC_f29cf.dir/CheckSymbolExists.cxx.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -I/usr/local/Cellar/qt/4.8.7_2/include -F/usr/local/Cellar/qt/4.8.7_2/lib   -o CMakeFiles/cmTC_f29cf.dir/CheckSymbolExists.cxx.o -c /Users/matthew/Desktop/iAnt-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
-/Users/matthew/Desktop/iAnt-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: error: use of undeclared identifier 'Q_WS_WIN'
+Run Build Command:"/usr/bin/make" "cmTC_66cfe/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_66cfe.dir/build.make CMakeFiles/cmTC_66cfe.dir/build
+Building CXX object CMakeFiles/cmTC_66cfe.dir/CheckSymbolExists.cxx.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -I/usr/local/Cellar/qt/4.8.7_2/include -F/usr/local/Cellar/qt/4.8.7_2/lib   -o CMakeFiles/cmTC_66cfe.dir/CheckSymbolExists.cxx.o -c /Users/matthew/Desktop/DDSA-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+/Users/matthew/Desktop/DDSA-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: error: use of undeclared identifier 'Q_WS_WIN'
   return ((int*)(&Q_WS_WIN))[argc];
                   ^
 1 error generated.
-make[1]: *** [CMakeFiles/cmTC_f29cf.dir/CheckSymbolExists.cxx.o] Error 1
-make: *** [cmTC_f29cf/fast] Error 2
+make[1]: *** [CMakeFiles/cmTC_66cfe.dir/CheckSymbolExists.cxx.o] Error 1
+make: *** [cmTC_66cfe/fast] Error 2
 
-File /Users/matthew/Desktop/iAnt-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+File /Users/matthew/Desktop/DDSA-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
 /* */
 #include <QtCore/qglobal.h>
 
@@ -57,20 +57,20 @@ int main(int argc, char** argv)
 }
 
 Determining if the Q_WS_QWS exist failed with the following output:
-Change Dir: /Users/matthew/Desktop/iAnt-ARGoS/build/CMakeFiles/CMakeTmp
+Change Dir: /Users/matthew/Desktop/DDSA-ARGoS/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_02b78/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_02b78.dir/build.make CMakeFiles/cmTC_02b78.dir/build
-Building CXX object CMakeFiles/cmTC_02b78.dir/CheckSymbolExists.cxx.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -I/usr/local/Cellar/qt/4.8.7_2/include -F/usr/local/Cellar/qt/4.8.7_2/lib   -o CMakeFiles/cmTC_02b78.dir/CheckSymbolExists.cxx.o -c /Users/matthew/Desktop/iAnt-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
-/Users/matthew/Desktop/iAnt-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: error: use of undeclared identifier 'Q_WS_QWS'
+Run Build Command:"/usr/bin/make" "cmTC_358e2/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_358e2.dir/build.make CMakeFiles/cmTC_358e2.dir/build
+Building CXX object CMakeFiles/cmTC_358e2.dir/CheckSymbolExists.cxx.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++    -I/usr/local/Cellar/qt/4.8.7_2/include -F/usr/local/Cellar/qt/4.8.7_2/lib   -o CMakeFiles/cmTC_358e2.dir/CheckSymbolExists.cxx.o -c /Users/matthew/Desktop/DDSA-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+/Users/matthew/Desktop/DDSA-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: error: use of undeclared identifier 'Q_WS_QWS'
   return ((int*)(&Q_WS_QWS))[argc];
                   ^
 1 error generated.
-make[1]: *** [CMakeFiles/cmTC_02b78.dir/CheckSymbolExists.cxx.o] Error 1
-make: *** [cmTC_02b78/fast] Error 2
+make[1]: *** [CMakeFiles/cmTC_358e2.dir/CheckSymbolExists.cxx.o] Error 1
+make: *** [cmTC_358e2/fast] Error 2
 
-File /Users/matthew/Desktop/iAnt-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+File /Users/matthew/Desktop/DDSA-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
 /* */
 #include <QtCore/qglobal.h>
 

@@ -42,7 +42,7 @@ void DSA_loop_functions::Init(TConfigurationNode& node) {
 
 	for(it = footbots.begin(); it != footbots.end(); it++) {
         argos::CFootBotEntity& footBot = *argos::any_cast<argos::CFootBotEntity*>(it->second);
-        iAntBaseController& c = dynamic_cast<iAntBaseController&>(footBot.GetControllableEntity().GetController());
+        BaseController& c = dynamic_cast<BaseController&>(footBot.GetControllableEntity().GetController());
         DSA_controller& c2 = dynamic_cast<DSA_controller&>(c);
 
         c2.SetLoopFunctions(this);

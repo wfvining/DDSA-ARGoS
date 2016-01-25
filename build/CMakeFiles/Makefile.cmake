@@ -13,10 +13,9 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.4.2/CMakeSystem.cmake"
   "CMakeFiles/feature_tests.c"
   "CMakeFiles/feature_tests.cxx"
+  "../source/Base/CMakeLists.txt"
   "../source/CMakeLists.txt"
-  "../source/CPFA/CMakeLists.txt"
   "../source/DSA/CMakeLists.txt"
-  "../source/iAntBase/CMakeLists.txt"
   "/usr/local/Cellar/argos3/3.0.0-beta39/share/argos3/cmake/ARGoSCheckQTOpenGL.cmake"
   "/usr/local/Cellar/argos3/3.0.0-beta39/share/argos3/cmake/FindGSL.cmake"
   "/usr/local/Cellar/argos3/3.0.0-beta39/share/argos3/cmake/FindLua52.cmake"
@@ -131,18 +130,14 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/3.4.2/CMakeCXXCompiler.cmake"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "source/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "source/iAntBase/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "source/CPFA/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "source/Base/CMakeFiles/CMakeDirectoryInformation.cmake"
   "source/DSA/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "source/iAntBase/CMakeFiles/iAntPheromone.dir/DependInfo.cmake"
-  "source/iAntBase/CMakeFiles/iAntFood.dir/DependInfo.cmake"
-  "source/iAntBase/CMakeFiles/iAntBaseController.dir/DependInfo.cmake"
-  "source/CPFA/CMakeFiles/CPFA_controller.dir/DependInfo.cmake"
-  "source/CPFA/CMakeFiles/CPFA_loop_functions.dir/DependInfo.cmake"
+  "source/Base/CMakeFiles/Food.dir/DependInfo.cmake"
+  "source/Base/CMakeFiles/BaseController.dir/DependInfo.cmake"
   "source/DSA/CMakeFiles/DSA_controller.dir/DependInfo.cmake"
   "source/DSA/CMakeFiles/DSA_loop_functions.dir/DependInfo.cmake"
   )

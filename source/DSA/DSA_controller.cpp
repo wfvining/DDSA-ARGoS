@@ -325,8 +325,8 @@ void DSA_controller::SetTargetW(char x){
  }
 
 /*****
- * Check if the iAnt is finding food. This is defined as the iAnt being within
- * the distance tolerance of the position of a food item. If the iAnt has found
+ * Check if the Robot is finding food. This is defined as the Robot being within
+ * the distance tolerance of the position of a food item. If the Robot has found
  * food then the appropriate boolean flags are triggered.
  *****/
 void DSA_controller::SetHoldingFood(){
@@ -361,7 +361,7 @@ void DSA_controller::SetHoldingFood(){
     }
 }
 /*****
- * Is this iAnt_controller holding food?
+ * Is this Robot_controller holding food?
  *     true  = yes
  *     false = no
  *****/

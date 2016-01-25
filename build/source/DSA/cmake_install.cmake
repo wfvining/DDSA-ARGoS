@@ -1,4 +1,4 @@
-# Install script for directory: /Users/matthew/Desktop/iAnt-ARGoS/source/DSA
+# Install script for directory: /Users/matthew/Desktop/DDSA-ARGoS/source/DSA
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

@@ -17,7 +17,7 @@ add_library(DSA_controller     SHARED DSA_controller.h
 ###############################################
 
 target_link_libraries(DSA_controller
-					  iAntBaseController)
+					  BaseController)
 
 target_link_libraries(DSA_loop_functions
                       DSA_controller

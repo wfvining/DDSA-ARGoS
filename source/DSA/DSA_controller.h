@@ -1,7 +1,7 @@
 #ifndef DSA_CONTROLLER_H
 #define DSA_CONTROLLER_H
 
-#include <source/iAntBase/iAntBaseController.h>
+#include <source/Base/BaseController.h>
 #include <source/DSA/DSA_loop_functions.h>
 
 using namespace argos;
@@ -9,7 +9,7 @@ using namespace std;
 
 class DSA_loop_functions;
 
-class DSA_controller : public iAntBaseController {
+class DSA_controller : public BaseController {
 
     public:
 
@@ -36,7 +36,7 @@ class DSA_controller : public iAntBaseController {
         size_t NumberOfRobots;
         size_t NumberOfSpirals;
 
-        /* iAnt DSA state variable */
+        /* Robot DSA state variable */
         enum DSA { SEARCHING = 1, RETURN_TO_NEST = 2, RETURN_TO_SEARCH = 3 } DSA;
 
         /* robot internal variables & statistics */

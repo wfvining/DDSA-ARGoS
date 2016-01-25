@@ -48,10 +48,10 @@ RM = /usr/local/Cellar/cmake/3.4.2/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/matthew/Desktop/iAnt-ARGoS
+CMAKE_SOURCE_DIR = /Users/matthew/Desktop/DDSA-ARGoS
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/matthew/Desktop/iAnt-ARGoS/build
+CMAKE_BINARY_DIR = /Users/matthew/Desktop/DDSA-ARGoS/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/matthew/Desktop/iAnt-ARGoS/build/CMakeFiles /Users/matthew/Desktop/iAnt-ARGoS/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/matthew/Desktop/DDSA-ARGoS/build/CMakeFiles /Users/matthew/Desktop/DDSA-ARGoS/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/matthew/Desktop/iAnt-ARGoS/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/matthew/Desktop/DDSA-ARGoS/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,69 +111,30 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named iAntBaseController
+# Target rules for targets named BaseController
 
 # Build rule for target.
-iAntBaseController: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 iAntBaseController
-.PHONY : iAntBaseController
+BaseController: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 BaseController
+.PHONY : BaseController
 
 # fast build rule for target.
-iAntBaseController/fast:
-	$(MAKE) -f source/iAntBase/CMakeFiles/iAntBaseController.dir/build.make source/iAntBase/CMakeFiles/iAntBaseController.dir/build
-.PHONY : iAntBaseController/fast
+BaseController/fast:
+	$(MAKE) -f source/Base/CMakeFiles/BaseController.dir/build.make source/Base/CMakeFiles/BaseController.dir/build
+.PHONY : BaseController/fast
 
 #=============================================================================
-# Target rules for targets named iAntFood
+# Target rules for targets named Food
 
 # Build rule for target.
-iAntFood: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 iAntFood
-.PHONY : iAntFood
+Food: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Food
+.PHONY : Food
 
 # fast build rule for target.
-iAntFood/fast:
-	$(MAKE) -f source/iAntBase/CMakeFiles/iAntFood.dir/build.make source/iAntBase/CMakeFiles/iAntFood.dir/build
-.PHONY : iAntFood/fast
-
-#=============================================================================
-# Target rules for targets named iAntPheromone
-
-# Build rule for target.
-iAntPheromone: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 iAntPheromone
-.PHONY : iAntPheromone
-
-# fast build rule for target.
-iAntPheromone/fast:
-	$(MAKE) -f source/iAntBase/CMakeFiles/iAntPheromone.dir/build.make source/iAntBase/CMakeFiles/iAntPheromone.dir/build
-.PHONY : iAntPheromone/fast
-
-#=============================================================================
-# Target rules for targets named CPFA_controller
-
-# Build rule for target.
-CPFA_controller: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 CPFA_controller
-.PHONY : CPFA_controller
-
-# fast build rule for target.
-CPFA_controller/fast:
-	$(MAKE) -f source/CPFA/CMakeFiles/CPFA_controller.dir/build.make source/CPFA/CMakeFiles/CPFA_controller.dir/build
-.PHONY : CPFA_controller/fast
-
-#=============================================================================
-# Target rules for targets named CPFA_loop_functions
-
-# Build rule for target.
-CPFA_loop_functions: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 CPFA_loop_functions
-.PHONY : CPFA_loop_functions
-
-# fast build rule for target.
-CPFA_loop_functions/fast:
-	$(MAKE) -f source/CPFA/CMakeFiles/CPFA_loop_functions.dir/build.make source/CPFA/CMakeFiles/CPFA_loop_functions.dir/build
-.PHONY : CPFA_loop_functions/fast
+Food/fast:
+	$(MAKE) -f source/Base/CMakeFiles/Food.dir/build.make source/Base/CMakeFiles/Food.dir/build
+.PHONY : Food/fast
 
 #=============================================================================
 # Target rules for targets named DSA_controller
@@ -209,11 +170,8 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... iAntPheromone"
-	@echo "... iAntFood"
-	@echo "... iAntBaseController"
-	@echo "... CPFA_controller"
-	@echo "... CPFA_loop_functions"
+	@echo "... Food"
+	@echo "... BaseController"
 	@echo "... DSA_controller"
 	@echo "... DSA_loop_functions"
 .PHONY : help

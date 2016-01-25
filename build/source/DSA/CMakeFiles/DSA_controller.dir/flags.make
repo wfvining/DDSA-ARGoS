@@ -6,5 +6,5 @@ CXX_FLAGS = -fPIC
 
 CXX_DEFINES = -DDSA_controller_EXPORTS -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_OPENGL_LIB
 
-CXX_INCLUDES = -I/System/Library/Frameworks/OpenGL.framework/Headers -isystem /usr/local/Cellar/qt/4.8.7_2/include -iframework /usr/local/Cellar/qt/4.8.7_2/lib -isystem /usr/local/Cellar/qt/4.8.7_2/include/QtOpenGL -isystem /usr/local/Cellar/qt/4.8.7_2/include/QtGui -isystem /usr/local/Cellar/qt/4.8.7_2/lib/QtCore.framework/Headers -I/Users/matthew/Desktop/iAnt-ARGoS -I/usr/local/Cellar/argos3/3.0.0-beta39/include -I/usr/local/Cellar/gsl/1.16/include -I/usr/local/include 
+CXX_INCLUDES = -I/System/Library/Frameworks/OpenGL.framework/Headers -isystem /usr/local/Cellar/qt/4.8.7_2/include -iframework /usr/local/Cellar/qt/4.8.7_2/lib -isystem /usr/local/Cellar/qt/4.8.7_2/include/QtOpenGL -isystem /usr/local/Cellar/qt/4.8.7_2/include/QtGui -isystem /usr/local/Cellar/qt/4.8.7_2/lib/QtCore.framework/Headers -I/Users/matthew/Desktop/DDSA-ARGoS -I/usr/local/Cellar/argos3/3.0.0-beta39/include -I/usr/local/Cellar/gsl/1.16/include -I/usr/local/include 
 

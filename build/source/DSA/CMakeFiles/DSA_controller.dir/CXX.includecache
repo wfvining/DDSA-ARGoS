@@ -6,23 +6,7 @@
 
 #IncludeRegexTransform: 
 
-..//source/DSA/DSA_controller.h
-source/iAntBase/iAntBaseController.h
--
-source/DSA/DSA_loop_functions.h
--
-
-..//source/DSA/DSA_loop_functions.h
-argos3/core/simulator/loop_functions.h
--
-argos3/plugins/robots/foot-bot/simulator/footbot_entity.h
--
-argos3/core/simulator/entity/floor_entity.h
--
-source/DSA/DSA_controller.h
--
-
-..//source/iAntBase/iAntBaseController.h
+..//source/Base/BaseController.h
 argos3/core/utility/logging/argos_log.h
 -
 argos3/core/control_interface/ci_controller.h
@@ -40,23 +24,39 @@ cmath
 stack
 -
 
-/Users/matthew/Desktop/iAnt-ARGoS/source/DSA/DSA_controller.cpp
-DSA_controller.h
-/Users/matthew/Desktop/iAnt-ARGoS/source/DSA/DSA_controller.h
-
-/Users/matthew/Desktop/iAnt-ARGoS/source/DSA/DSA_controller.h
-source/iAntBase/iAntBaseController.h
+..//source/DSA/DSA_controller.h
+source/Base/BaseController.h
 -
 source/DSA/DSA_loop_functions.h
 -
 
-/Users/matthew/Desktop/iAnt-ARGoS/source/DSA/DSA_loop_functions.cpp
+..//source/DSA/DSA_loop_functions.h
+argos3/core/simulator/loop_functions.h
+-
+argos3/plugins/robots/foot-bot/simulator/footbot_entity.h
+-
+argos3/core/simulator/entity/floor_entity.h
+-
+source/DSA/DSA_controller.h
+-
+
+/Users/matthew/Desktop/DDSA-ARGoS/source/DSA/DSA_controller.cpp
+DSA_controller.h
+/Users/matthew/Desktop/DDSA-ARGoS/source/DSA/DSA_controller.h
+
+/Users/matthew/Desktop/DDSA-ARGoS/source/DSA/DSA_controller.h
+source/Base/BaseController.h
+-
+source/DSA/DSA_loop_functions.h
+-
+
+/Users/matthew/Desktop/DDSA-ARGoS/source/DSA/DSA_loop_functions.cpp
 DSA_loop_functions.h
-/Users/matthew/Desktop/iAnt-ARGoS/source/DSA/DSA_loop_functions.h
+/Users/matthew/Desktop/DDSA-ARGoS/source/DSA/DSA_loop_functions.h
 argos3/plugins/simulator/entities/box_entity.h
 -
 
-/Users/matthew/Desktop/iAnt-ARGoS/source/DSA/DSA_loop_functions.h
+/Users/matthew/Desktop/DDSA-ARGoS/source/DSA/DSA_loop_functions.h
 argos3/core/simulator/loop_functions.h
 -
 argos3/plugins/robots/foot-bot/simulator/footbot_entity.h
