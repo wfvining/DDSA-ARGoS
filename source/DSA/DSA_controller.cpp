@@ -10,7 +10,8 @@ DSA_controller::DSA_controller() :
     DSA(SEARCHING),
     RNG(NULL),
     ResetReturnPosition(true),
-    stopTimeStep(0)
+    stopTimeStep(0),
+    isHoldingFood(false)
 {}
 
 /*****
@@ -324,7 +325,7 @@ void DSA_controller::SetTargetW(char x){
     if(TargetHit() == true && tempPattern.size() > 0) {
       /* Finds the last direction of the pattern. */
     direction_last = tempPattern[tempPattern.size() - 1]; 
-    previous_pattern_position = GetTarget();
+    
       tempPattern.pop_back();
 	
         switch(direction_last)
@@ -385,6 +386,7 @@ void DSA_controller::SetHoldingFood(){
                 isHoldingFood = true;
 		ReturnPosition = GetTarget();
 
+		//MovementStack.push(previous_movement);
 		//ReturnPosition = previous_pattern_position; // Return to the position in the search where interrupted
 		
                 SetTarget(loopFunctions->NestPosition);

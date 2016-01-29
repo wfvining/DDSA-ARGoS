@@ -77,7 +77,7 @@ size_t BaseController::GetMovementState() {
 
 void BaseController::SetNextMovement() {
 
-
+ 
     if(MovementStack.size() == 0 && CurrentMovementState == STOP) {
 
         argos::Real distanceToTarget = (TargetPosition - GetPosition()).Length();
@@ -184,6 +184,9 @@ void BaseController::PushMovement(size_t moveType, argos::Real moveSize) {
 
 void BaseController::PopMovement() {
     Movement nextMove = MovementStack.top();
+
+    previous_movement = nextMove;
+
     MovementStack.pop();
 
     switch(nextMove.type) {
@@ -214,6 +217,7 @@ void BaseController::PopMovement() {
         }
 
     }
+
 }
 
 bool BaseController::CollisionDetection() {

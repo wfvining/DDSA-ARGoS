@@ -85,8 +85,6 @@ class DSA_controller : public BaseController {
         bool TargetHit();
         void SetHoldingFood(); 
 
-	CVector2 previous_pattern_position;
-
 	string results_path;
 	string results_full_path;
 };

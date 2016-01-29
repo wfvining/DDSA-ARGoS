@@ -45,6 +45,7 @@ class BaseController : public argos::CCI_Controller {
     protected:
 
 	unsigned int collision_counter;
+	
 
         size_t WaitTime;
 
@@ -75,6 +76,17 @@ class BaseController : public argos::CCI_Controller {
             BACK    = 4
         } CurrentMovementState;
 
+	/* movement definition variables */
+        struct Movement {
+            size_t type;
+            argos::Real magnitude;
+        };
+
+	Movement previous_movement;
+	argos::CVector2 previous_pattern_position;
+	
+	std::stack<Movement> MovementStack;
+
     private:
 
         argos::CLoopFunctions& LF;
@@ -82,14 +94,8 @@ class BaseController : public argos::CCI_Controller {
         argos::CVector3 StartPosition;
         argos::CVector2 TargetPosition;
 
-        /* movement definition variables */
-        struct Movement {
-            size_t type;
-            argos::Real magnitude;
-        };
-
-        //MovementState CurrentMovementState;
-        std::stack<Movement> MovementStack;
+                //MovementState CurrentMovementState;
+        
 
         /* private navigation helper functions */
         void SetNextMovement();
