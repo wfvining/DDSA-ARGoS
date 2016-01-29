@@ -9,7 +9,6 @@ DSA_controller::DSA_controller() :
     NumberOfSpirals(0),
     DSA(SEARCHING),
     RNG(NULL),
-    collisionCounter(0),
     ResetReturnPosition(true),
     stopTimeStep(0)
 {}
@@ -27,12 +26,14 @@ void DSA_controller::Init(TConfigurationNode& node) {
     argos::TConfigurationNode settings = argos::GetNode(node, "settings");
     argos::GetNodeAttribute(settings, "NumberOfRobots",          NumberOfRobots);
     argos::GetNodeAttribute(settings, "NumberOfSpirals",         NumberOfSpirals);
+    argos::GetNodeAttribute(settings, "SearchStepSize",          SearchStepSize);
     argos::GetNodeAttribute(settings, "TargetDistanceTolerance", TargetDistanceTolerance);
     argos::GetNodeAttribute(settings, "TargetAngleTolerance",    TargetAngleTolerance);
     argos::GetNodeAttribute(settings, "SearcherGap",             SearcherGap);
     argos::GetNodeAttribute(settings, "FoodDistanceTolerance",   FoodDistanceTolerance);
     argos::GetNodeAttribute(settings, "RobotForwardSpeed",       RobotForwardSpeed);
     argos::GetNodeAttribute(settings, "RobotRotationSpeed",      RobotRotationSpeed);
+    argos::GetNodeAttribute(settings, "ResultsDirectoryPath",      results_path);
 
     FoodDistanceTolerance *= FoodDistanceTolerance;
 
@@ -45,6 +46,55 @@ void DSA_controller::Init(TConfigurationNode& node) {
     RNG = CRandom::CreateRNG("argos");
     generatePattern(NumberOfSpirals, NumberOfRobots);
     TrailColor = CColor(std::rand()%255, std::rand()%255, std::rand()%255, 255);
+
+    // Name the results file with the current time and date
+ time_t t = time(0);   // get time now
+    struct tm * now = localtime( & t );
+    stringstream ss;
+
+    ss << "DSA-"<<GIT_BRANCH<<"-"<<GIT_COMMIT_HASH<<"-" 
+       << (now->tm_year) << '-'
+       << (now->tm_mon + 1) << '-'
+       <<  now->tm_mday << '-'
+       <<  now->tm_hour << '-'
+       <<  now->tm_min << '-'
+       <<  now->tm_sec << ".csv";
+
+    string results_file_name = ss.str();
+   results_full_path = results_path+"/"+results_file_name;        
+
+
+
+    // Only the first robot should do this:
+
+
+    if (GetId().compare("DSA_0") == 0)
+      {
+  
+   ofstream results_output_stream;
+ results_output_stream.open(results_full_path, ios::app);
+ results_output_stream << "NumberOfRobots, "
+		       << "NumberOfSpirals, "
+		       << "TargetDistanceTolerance, "
+		       << "TargetAngleTolerance, "
+		       << "SearcherGap, "
+		       << "FoodDistanceTolerance, "
+		       << "RobotForwardSpeed, "
+		       << "RobotRotationSpeed, "
+		       << "RandomSeed" << endl
+                       << NumberOfRobots << ", "
+		       << NumberOfSpirals << ", "
+		       << TargetDistanceTolerance << ", "
+		       << TargetAngleTolerance << ", "
+		       << SearcherGap << ", "
+		       << FoodDistanceTolerance << ", "
+		       << RobotForwardSpeed << ", "
+		       << RobotRotationSpeed << ", "
+		       << CSimulator::GetInstance().GetRandomSeed() << endl;  
+ results_output_stream.close();
+      }
+
+    cout << "Finished Initializing the DDSA" << endl;
 }
 
 size_t DSA_controller::generatePattern(int N_circuits, int N_robots)
@@ -182,14 +232,14 @@ void DSA_controller::CopyPatterntoTemp()
 
 /*****
  * Primary control loop for this controller object. This function will execute
- * the CPFA logic using the CPFA enumeration flag once per frame.
+ * the DSA logic once per frame.
  *****/
 void DSA_controller::ControlStep() {
 
     // argos::LOG << DSA << " : " << GetTarget() << std::endl;
 
 
-           CVector3 position3d(GetPosition().GetX(), GetPosition().GetY(), 0.00);          
+           CVector3 position3d(GetPosition().GetX(), GetPosition().GetY(), 0.00);
  	  CVector3 target3d(previous_position.GetX(), previous_position.GetY(), 0.00);
            CRay3 targetRay(target3d, position3d);
            myTrail.push_back(targetRay);
@@ -209,9 +259,12 @@ void DSA_controller::ControlStep() {
         GetTargets(); /* Initializes targets positions. */
 
     } else if(IsHoldingFood() == true && DSA == RETURN_TO_NEST) { /* Check if it is near the nest then set isHoldingFood to false */
+      
+      // This appears to never happen and the logic was moved to the SetHoldingFood function
 
         if((GetPosition() - loopFunctions->NestPosition).SquareLength() < loopFunctions->NestRadiusSquared) {
             // isHoldingFood = false;
+	  
             DSA = RETURN_TO_SEARCH;
         }
 
@@ -347,7 +400,11 @@ void DSA_controller::SetHoldingFood(){
     } else if(IsHoldingFood() == true) {
     	if((GetPosition()-loopFunctions->NestPosition).SquareLength() < loopFunctions->NestRadiusSquared) {
     		isHoldingFood = false;
-            
+		ofstream results_output_stream;
+		results_output_stream.open(results_full_path, ios::app);
+		results_output_stream << loopFunctions->getSimTimeInSeconds() << ", " << ++num_targets_collected << ", " << "Col Count" << endl;	    
+		results_output_stream.close();
+
     		DSA = RETURN_TO_SEARCH;
     		SetTarget(ReturnPosition);
     	}
@@ -371,6 +428,7 @@ void DSA_controller::Reset() {
     tempPattern.clear();
     CopyPatterntoTemp();
     generatePattern(NumberOfSpirals, NumberOfRobots);
+    
 }
 
 REGISTER_CONTROLLER(DSA_controller, "DSA_controller")

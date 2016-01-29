@@ -19,12 +19,18 @@ class DSA_loop_functions : public argos::CLoopFunctions {
 		DSA_loop_functions();
 
 		void Init(TConfigurationNode& node);
+		void PreStep();
+
         void SetFoodDistribution();
+
+	argos::Real getSimTimeInSeconds();
 
 	protected:
 
         argos::CRandom::CRNG* RNG;
 
+	size_t sim_time;
+	size_t ticks_per_second;
         size_t MaxSimTime;
         size_t ResourceDensityDelay;
         size_t RandomSeed;

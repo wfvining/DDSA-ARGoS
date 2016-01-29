@@ -44,6 +44,8 @@ class BaseController : public argos::CCI_Controller {
 
     protected:
 
+	unsigned int collision_counter;
+
         size_t WaitTime;
 
 	argos::CRadians TargetAngleTolerance;

@@ -11,6 +11,8 @@ SET(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 SET(CMAKE_TARGET_DEFINITIONS
+  "GIT_BRANCH=\"master\""
+  "GIT_COMMIT_HASH=\"13d159f\""
   "QT_CORE_LIB"
   "QT_GUI_LIB"
   "QT_NO_DEBUG"

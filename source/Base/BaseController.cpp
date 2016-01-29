@@ -229,6 +229,7 @@ bool BaseController::CollisionDetection() {
 
         Stop();
        isCollisionDetected = true;
+       collision_counter++;
         while(MovementStack.size() > 0) MovementStack.pop();
 
         PushMovement(FORWARD, SearchStepSize);

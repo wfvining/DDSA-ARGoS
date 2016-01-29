@@ -9,6 +9,8 @@ using namespace std;
 
 class DSA_loop_functions;
 
+static unsigned int num_targets_collected = 0;
+
 class DSA_controller : public BaseController {
 
     public:
@@ -31,6 +33,8 @@ class DSA_controller : public BaseController {
 
 		void SetLoopFunctions(DSA_loop_functions* lf) { loopFunctions = lf; }
 
+		argos::Real SimTimeInSeconds();
+
     private:
 
         size_t NumberOfRobots;
@@ -50,8 +54,7 @@ class DSA_controller : public BaseController {
 
         Real                SearcherGap;
         Real                FoodDistanceTolerance;
-        size_t				collisionCounter;
-	CVector2            previous_position;
+       	CVector2            previous_position;
 	CVector2            previous_target;
 	CVector2            newTarget;
         CVector3            startPosition;
@@ -83,6 +86,9 @@ class DSA_controller : public BaseController {
         void SetHoldingFood(); 
 
 	CVector2 previous_pattern_position;
+
+	string results_path;
+	string results_full_path;
 };
 
 #endif /* DSA_CONTROLLER_H */

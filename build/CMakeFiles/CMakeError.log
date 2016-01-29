@@ -1,19 +1,19 @@
 Determining if the Q_WS_WIN exist failed with the following output:
 Change Dir: /home/users/matthew/DDSA-ARGoS/build/CMakeFiles/CMakeTmp
 
-Run Build Command:/usr/bin/make "cmTryCompileExec3842658746/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec3842658746.dir/build.make CMakeFiles/cmTryCompileExec3842658746.dir/build
+Run Build Command:/usr/bin/make "cmTryCompileExec2477428226/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec2477428226.dir/build.make CMakeFiles/cmTryCompileExec2477428226.dir/build
 make[1]: Entering directory `/home/users/matthew/DDSA-ARGoS/build/CMakeFiles/CMakeTmp'
 /usr/bin/cmake -E cmake_progress_report /home/users/matthew/DDSA-ARGoS/build/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building CXX object CMakeFiles/cmTryCompileExec3842658746.dir/CheckSymbolExists.cxx.o
-/usr/bin/c++    -std=c++0x  -I/usr/include/qt4    -o CMakeFiles/cmTryCompileExec3842658746.dir/CheckSymbolExists.cxx.o -c /home/users/matthew/DDSA-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+Building CXX object CMakeFiles/cmTryCompileExec2477428226.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++    -std=c++0x  -I/usr/include/qt4    -o CMakeFiles/cmTryCompileExec2477428226.dir/CheckSymbolExists.cxx.o -c /home/users/matthew/DDSA-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
 /home/users/matthew/DDSA-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx: In function ‘int main(int, char**)’:
 /home/users/matthew/DDSA-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: error: ‘Q_WS_WIN’ was not declared in this scope
    return ((int*)(&Q_WS_WIN))[argc];
                    ^
 make[1]: Leaving directory `/home/users/matthew/DDSA-ARGoS/build/CMakeFiles/CMakeTmp'
-make[1]: *** [CMakeFiles/cmTryCompileExec3842658746.dir/CheckSymbolExists.cxx.o] Error 1
-make: *** [cmTryCompileExec3842658746/fast] Error 2
+make[1]: *** [CMakeFiles/cmTryCompileExec2477428226.dir/CheckSymbolExists.cxx.o] Error 1
+make: *** [cmTryCompileExec2477428226/fast] Error 2
 
 File /home/users/matthew/DDSA-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
 /* */
@@ -33,19 +33,19 @@ int main(int argc, char** argv)
 Determining if the Q_WS_QWS exist failed with the following output:
 Change Dir: /home/users/matthew/DDSA-ARGoS/build/CMakeFiles/CMakeTmp
 
-Run Build Command:/usr/bin/make "cmTryCompileExec3559353555/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec3559353555.dir/build.make CMakeFiles/cmTryCompileExec3559353555.dir/build
+Run Build Command:/usr/bin/make "cmTryCompileExec3973700395/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec3973700395.dir/build.make CMakeFiles/cmTryCompileExec3973700395.dir/build
 make[1]: Entering directory `/home/users/matthew/DDSA-ARGoS/build/CMakeFiles/CMakeTmp'
 /usr/bin/cmake -E cmake_progress_report /home/users/matthew/DDSA-ARGoS/build/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building CXX object CMakeFiles/cmTryCompileExec3559353555.dir/CheckSymbolExists.cxx.o
-/usr/bin/c++    -std=c++0x  -I/usr/include/qt4    -o CMakeFiles/cmTryCompileExec3559353555.dir/CheckSymbolExists.cxx.o -c /home/users/matthew/DDSA-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+Building CXX object CMakeFiles/cmTryCompileExec3973700395.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++    -std=c++0x  -I/usr/include/qt4    -o CMakeFiles/cmTryCompileExec3973700395.dir/CheckSymbolExists.cxx.o -c /home/users/matthew/DDSA-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
 /home/users/matthew/DDSA-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx: In function ‘int main(int, char**)’:
 /home/users/matthew/DDSA-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: error: ‘Q_WS_QWS’ was not declared in this scope
    return ((int*)(&Q_WS_QWS))[argc];
                    ^
 make[1]: Leaving directory `/home/users/matthew/DDSA-ARGoS/build/CMakeFiles/CMakeTmp'
-make[1]: *** [CMakeFiles/cmTryCompileExec3559353555.dir/CheckSymbolExists.cxx.o] Error 1
-make: *** [cmTryCompileExec3559353555/fast] Error 2
+make[1]: *** [CMakeFiles/cmTryCompileExec3973700395.dir/CheckSymbolExists.cxx.o] Error 1
+make: *** [cmTryCompileExec3973700395/fast] Error 2
 
 File /home/users/matthew/DDSA-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
 /* */
@@ -65,19 +65,19 @@ int main(int argc, char** argv)
 Determining if the Q_WS_MAC exist failed with the following output:
 Change Dir: /home/users/matthew/DDSA-ARGoS/build/CMakeFiles/CMakeTmp
 
-Run Build Command:/usr/bin/make "cmTryCompileExec4178541540/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec4178541540.dir/build.make CMakeFiles/cmTryCompileExec4178541540.dir/build
+Run Build Command:/usr/bin/make "cmTryCompileExec1632115102/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1632115102.dir/build.make CMakeFiles/cmTryCompileExec1632115102.dir/build
 make[1]: Entering directory `/home/users/matthew/DDSA-ARGoS/build/CMakeFiles/CMakeTmp'
 /usr/bin/cmake -E cmake_progress_report /home/users/matthew/DDSA-ARGoS/build/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building CXX object CMakeFiles/cmTryCompileExec4178541540.dir/CheckSymbolExists.cxx.o
-/usr/bin/c++    -std=c++0x  -I/usr/include/qt4    -o CMakeFiles/cmTryCompileExec4178541540.dir/CheckSymbolExists.cxx.o -c /home/users/matthew/DDSA-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+Building CXX object CMakeFiles/cmTryCompileExec1632115102.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++    -std=c++0x  -I/usr/include/qt4    -o CMakeFiles/cmTryCompileExec1632115102.dir/CheckSymbolExists.cxx.o -c /home/users/matthew/DDSA-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
 /home/users/matthew/DDSA-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx: In function ‘int main(int, char**)’:
 /home/users/matthew/DDSA-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: error: ‘Q_WS_MAC’ was not declared in this scope
    return ((int*)(&Q_WS_MAC))[argc];
                    ^
 make[1]: Leaving directory `/home/users/matthew/DDSA-ARGoS/build/CMakeFiles/CMakeTmp'
-make[1]: *** [CMakeFiles/cmTryCompileExec4178541540.dir/CheckSymbolExists.cxx.o] Error 1
-make: *** [cmTryCompileExec4178541540/fast] Error 2
+make[1]: *** [CMakeFiles/cmTryCompileExec1632115102.dir/CheckSymbolExists.cxx.o] Error 1
+make: *** [cmTryCompileExec1632115102/fast] Error 2
 
 File /home/users/matthew/DDSA-ARGoS/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
 /* */
