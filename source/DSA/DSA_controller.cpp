@@ -271,9 +271,10 @@ void DSA_controller::ControlStep() {
 
     } else if(IsHoldingFood() == false && DSA == RETURN_TO_SEARCH) {
 
-        if((GetPosition() - ReturnPosition).SquareLength() < loopFunctions->NestRadiusSquared) {
-	  //tempPattern.push_back(direction_last); // Add the not-yet completed pattern step back 
-            DSA = SEARCHING;
+      if((GetPosition() - ReturnPosition).SquareLength() < loopFunctions->NestRadiusSquared) {
+	//tempPattern.push_back(direction_last); // Add the not-yet completed pattern step back 
+	SetTarget(ReturnPatternPosition);
+	  DSA = SEARCHING;
         }
 
     }
@@ -384,7 +385,8 @@ void DSA_controller::SetHoldingFood(){
         for (i = 0; i < loopFunctions->FoodList.size(); i++){
             if ((GetPosition()-loopFunctions->FoodList[i]).SquareLength() < FoodDistanceTolerance){
                 isHoldingFood = true;
-		ReturnPosition = GetTarget();
+		ReturnPosition = GetPosition();
+		ReturnPatternPosition = GetTarget();
 
 		//MovementStack.push(previous_movement);
 		//ReturnPosition = previous_pattern_position; // Return to the position in the search where interrupted

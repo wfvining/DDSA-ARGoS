@@ -48,6 +48,7 @@ class DSA_controller : public BaseController {
         DSA_loop_functions* loopFunctions;
 
         CVector2            ReturnPosition;
+        CVector2            ReturnPatternPosition;
 
         vector<CRay3>       myTrail;
         CColor              TrailColor;
