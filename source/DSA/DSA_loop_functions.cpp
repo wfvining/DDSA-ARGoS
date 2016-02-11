@@ -14,7 +14,7 @@ DSA_loop_functions::DSA_loop_functions() :
     DrawIDs(0),
     DrawTrails(0),
     DrawTargetRays(0),
-    FoodDistribution(2),
+    FoodDistribution(1),
 //    FoodDistribution(9),
     FoodItemCount(256),
     NumberOfClusters(4),

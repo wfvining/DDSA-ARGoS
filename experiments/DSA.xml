@@ -6,7 +6,7 @@
   <!-- ************************* -->
   <framework>
     <system     threads="0" />
-    <experiment length="3600"
+    <experiment length="1800"
                 ticks_per_second="16" />
                 
   </framework>
@@ -31,11 +31,11 @@
       <params>
 
         <settings NumberOfRobots          = "6"
-                  NumberOfSpirals         = "20"
-                  TargetDistanceTolerance = "0.01"
-                  TargetAngleTolerance = "0.1"
+                  NumberOfSpirals         = "30"
+                  TargetDistanceTolerance = "0.001"
+                  TargetAngleTolerance = "0.05"
                   FoodDistanceTolerance   = "0.13"
-                  SearcherGap             = "0.16"
+                  SearcherGap             = "0.24"
 		  SearchStepSize          = "0.08"
                   RobotForwardSpeed       = "16.0"
                   RobotRotationSpeed      = "4.0"
@@ -62,7 +62,7 @@
       <position method="grid"
                 center="0.0, 0.0, 0.0"
                 distances="0.2, 0.2, 0.0"
-                layout="3, 2, 1" />
+                layout="2, 3, 1" />
       <orientation method="constant" values="0.0, 0.0, 0.0" />
       <entity quantity="6" max_trials="100">
         <foot-bot id="DSA_">

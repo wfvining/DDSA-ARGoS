@@ -7,7 +7,7 @@
 DSA_controller::DSA_controller() :
     NumberOfRobots(0),
     NumberOfSpirals(0),
-    DSA(SEARCHING),
+    DSA(RETURN_TO_NEST),
     RNG(NULL),
     ResetReturnPosition(true),
     stopTimeStep(0),
@@ -235,51 +235,69 @@ void DSA_controller::CopyPatterntoTemp()
  * Primary control loop for this controller object. This function will execute
  * the DSA logic once per frame.
  *****/
-void DSA_controller::ControlStep() {
-
-    // argos::LOG << DSA << " : " << GetTarget() << std::endl;
-
-
-           CVector3 position3d(GetPosition().GetX(), GetPosition().GetY(), 0.00);
- 	  CVector3 target3d(previous_position.GetX(), previous_position.GetY(), 0.00);
-           CRay3 targetRay(target3d, position3d);
-           myTrail.push_back(targetRay);
-
- 	  loopFunctions->TargetRayList.push_back(targetRay);
- 	  loopFunctions->TargetRayColorList.push_back(TrailColor);
-
-             //LOG << myTrail.size() << endl;
- 	  previous_position = GetPosition();
-
-	/* Checks if the robot found a food */
-	SetHoldingFood();
-
-    /* If it didn't continue in a sprial */
-    if(IsHoldingFood() == false && DSA == SEARCHING){
-
-        GetTargets(); /* Initializes targets positions. */
-
-    } else if(IsHoldingFood() == true && DSA == RETURN_TO_NEST) { /* Check if it is near the nest then set isHoldingFood to false */
-      
-      // This appears to never happen and the logic was moved to the SetHoldingFood function
-
-        if((GetPosition() - loopFunctions->NestPosition).SquareLength() < loopFunctions->NestRadiusSquared) {
-            // isHoldingFood = false;
-	  
-            DSA = RETURN_TO_SEARCH;
-        }
-
-    } else if(IsHoldingFood() == false && DSA == RETURN_TO_SEARCH) {
-
-      if((GetPosition() - ReturnPosition).SquareLength() < loopFunctions->NestRadiusSquared) {
-	//tempPattern.push_back(direction_last); // Add the not-yet completed pattern step back 
-	SetTarget(ReturnPatternPosition);
-	  DSA = SEARCHING;
-        }
-
+void DSA_controller::ControlStep() 
+{
+  if (DSA == SEARCHING)
+    {
+      CVector3 position3d(GetPosition().GetX(), GetPosition().GetY(), 0.00);
+      CVector3 target3d(previous_position.GetX(), previous_position.GetY(), 0.00);
+      CRay3 targetRay(target3d, position3d);
+      myTrail.push_back(targetRay);
+  
+      loopFunctions->TargetRayList.push_back(targetRay);
+      loopFunctions->TargetRayColorList.push_back(TrailColor);
     }
 
-	Move();
+  //LOG << myTrail.size() << endl;
+  previous_position = GetPosition();
+
+  /* If it didn't continue in a sprial */
+  if( DSA == SEARCHING )
+    {
+      SetHoldingFood();
+      if (IsHoldingFood())
+	{
+	  ReturnPosition = GetPosition();
+	  ReturnPatternPosition = GetTarget();
+	  DSA = RETURN_TO_NEST;
+	  return;
+	}
+      else
+	{
+	  GetTargets(); /* Initializes targets positions. */
+	}
+    } 
+  else if( DSA == RETURN_TO_NEST) 
+    {
+      // Check if we reached the nest. If so record that we dropped food off and go back to the spiral
+      if((GetPosition() - loopFunctions->NestPosition).SquareLength() < loopFunctions->NestRadiusSquared) 
+	{
+	  isHoldingFood = false;
+	  DSA = RETURN_TO_SEARCH;
+	  
+	  ofstream results_output_stream;
+	  results_output_stream.open(results_full_path, ios::app);
+	  results_output_stream << loopFunctions->getSimTimeInSeconds() << ", " << ++num_targets_collected << ", " << "Col Count" << endl;	    
+	  results_output_stream.close();
+	}
+      else
+	{
+	  SetTarget(loopFunctions->NestPosition);
+	}
+    } 
+  else if( DSA == RETURN_TO_SEARCH ) 
+    {
+      SetTarget(ReturnPosition);
+
+      // Check if we have reached the return position
+      if ( TargetHit() )
+	{
+	  SetTarget(ReturnPatternPosition);
+	  DSA = SEARCHING;
+	}
+    } 
+  
+  Move();
 }   
 
 /*****
@@ -326,9 +344,7 @@ void DSA_controller::SetTargetW(char x){
     if(TargetHit() == true && tempPattern.size() > 0) {
       /* Finds the last direction of the pattern. */
     direction_last = tempPattern[tempPattern.size() - 1]; 
-    
-      tempPattern.pop_back();
-	
+    	
         switch(direction_last)
         {
             case 'N':
@@ -343,19 +359,15 @@ void DSA_controller::SetTargetW(char x){
             case 'W':
                 SetTargetW('W');
                 break;
-            //default:
-            	//Stop();
-        }
-
-        DSA = SEARCHING;
-    }
-    /* If the robot is down traversing the tempPattern, then return home */
-    else if(tempPattern.size() == 0) {
-    	Stop();
-        // DSA = RETURN_TO_NEST;
-        // SetTarget(loopFunctions->NestPosition);
-        // Reset();
 	}
+
+	tempPattern.pop_back();
+    }
+    
+    else if(tempPattern.size() == 0) 
+      {
+    	Stop();
+      }
 }
 
 /*****
@@ -379,41 +391,26 @@ void DSA_controller::SetTargetW(char x){
  * food then the appropriate boolean flags are triggered.
  *****/
 void DSA_controller::SetHoldingFood(){
-    if(IsHoldingFood() == false) {
+    if(IsHoldingFood() == false) 
+      {
         vector <CVector2> newFoodList; 
         size_t i = 0;
-        for (i = 0; i < loopFunctions->FoodList.size(); i++){
-            if ((GetPosition()-loopFunctions->FoodList[i]).SquareLength() < FoodDistanceTolerance){
-                isHoldingFood = true;
-		ReturnPosition = GetPosition();
-		ReturnPatternPosition = GetTarget();
-
-		//MovementStack.push(previous_movement);
-		//ReturnPosition = previous_pattern_position; // Return to the position in the search where interrupted
-		
-                SetTarget(loopFunctions->NestPosition);
-                //if(ResetReturnPosition == true) {
-                //    ReturnPosition = GetTarget();
-                //}
-                DSA = RETURN_TO_NEST;
-            } else {
-                newFoodList.push_back(loopFunctions->FoodList[i]);
-            }
+        for (i = 0; i < loopFunctions->FoodList.size(); i++)
+	  {
+            if ((GetPosition()-loopFunctions->FoodList[i]).SquareLength() < FoodDistanceTolerance)
+	      {
+	      isHoldingFood = true;
+	      } 
+	    else 
+	      {
+		newFoodList.push_back(loopFunctions->FoodList[i]);
+	      }
         } 
         loopFunctions->FoodList = newFoodList;
-    } else if(IsHoldingFood() == true) {
-    	if((GetPosition()-loopFunctions->NestPosition).SquareLength() < loopFunctions->NestRadiusSquared) {
-    		isHoldingFood = false;
-		ofstream results_output_stream;
-		results_output_stream.open(results_full_path, ios::app);
-		results_output_stream << loopFunctions->getSimTimeInSeconds() << ", " << ++num_targets_collected << ", " << "Col Count" << endl;	    
-		results_output_stream.close();
+      }
 
-    		DSA = RETURN_TO_SEARCH;
-    		SetTarget(ReturnPosition);
-    	}
-    }
 }
+
 /*****
  * Is this Robot_controller holding food?
  *     true  = yes
