@@ -274,11 +274,15 @@ void DSA_controller::ControlStep()
 	{
 	  isHoldingFood = false;
 	  DSA = RETURN_TO_SEARCH;
+	  num_targets_collected++;
+	  loopFunctions->setScore(num_targets_collected);
 	  
+	  /*
 	  ofstream results_output_stream;
 	  results_output_stream.open(results_full_path, ios::app);
 	  results_output_stream << loopFunctions->getSimTimeInSeconds() << ", " << ++num_targets_collected << ", " << "Col Count" << endl;	    
 	  results_output_stream.close();
+	  */
 	}
       else
 	{

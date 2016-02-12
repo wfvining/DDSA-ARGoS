@@ -28,13 +28,18 @@ DSA_loop_functions::DSA_loop_functions() :
     NestElevation(0.01),
   SearchRadiusSquared((4.0 * FoodRadius) * (4.0 * FoodRadius)),
   ticks_per_second(0),
-  sim_time(0)
+  sim_time(0),
+  score(0),
+  PrintFinalScore(0)
 {}
 
 void DSA_loop_functions::Init(TConfigurationNode& node) {
 CSimulator     *simulator     = &GetSimulator();
   CPhysicsEngine *physicsEngine = &simulator->GetPhysicsEngine("default");
 ticks_per_second = physicsEngine->GetInverseSimulationClockTick();
+argos::TConfigurationNode DDSA_node = argos::GetNode(node, "DDSA");
+argos::GetNodeAttribute(DDSA_node, "PrintFinalScore",                   PrintFinalScore);
+argos::GetNodeAttribute(DDSA_node, "FoodDistribution",                  FoodDistribution);
 
     // calculate the forage range and compensate for the robot's radius of 0.085m
     argos::CVector3 ArenaSize = GetSpace().GetArenaSize();
@@ -56,6 +61,24 @@ ticks_per_second = physicsEngine->GetInverseSimulationClockTick();
 
 	SetFoodDistribution();
 }
+
+
+double DSA_loop_functions::Score()
+{  
+  return score;
+}
+
+
+void DSA_loop_functions::setScore(double s)
+{
+  score = s;
+}
+
+void DSA_loop_functions::PostExperiment() 
+{
+  if (PrintFinalScore == 1) printf("%f\n", score);
+}
+
 
 void DSA_loop_functions::PreStep() 
 {

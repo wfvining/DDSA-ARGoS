@@ -21,11 +21,19 @@ class DSA_loop_functions : public argos::CLoopFunctions {
 		void Init(TConfigurationNode& node);
 		void PreStep();
 
+		void PostExperiment();
+
+		/* Calculates the performance of the robot in a trial */
+		Real Score();
+	
+
         void SetFoodDistribution();
 
 	argos::Real getSimTimeInSeconds();
 
 	protected:
+
+	void setScore(double s);
 
         argos::CRandom::CRNG* RNG;
 
@@ -81,6 +89,8 @@ class DSA_loop_functions : public argos::CLoopFunctions {
         bool IsCollidingWithNest(argos::CVector2 p);
         bool IsCollidingWithFood(argos::CVector2 p);
 
+	double score;
+	int PrintFinalScore;
 };
 
 #endif /* DSA_LOOP_FUNCTIONS_H */
