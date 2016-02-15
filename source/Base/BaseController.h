@@ -50,6 +50,8 @@ class BaseController : public argos::CCI_Controller {
         size_t WaitTime;
 
 	argos::CRadians TargetAngleTolerance;
+	argos::Real NestDistanceTolerance;
+	argos::CRadians NestAngleTolerance;
         argos::Real TargetDistanceTolerance;
         argos::Real SearchStepSize;
 

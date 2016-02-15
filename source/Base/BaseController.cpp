@@ -8,6 +8,8 @@
 BaseController::BaseController() :
     LF(argos::CSimulator::GetInstance().GetLoopFunctions()),
     WaitTime(0),
+    NestDistanceTolerance(0.01),
+    NestAngleTolerance(0.1),
     TargetDistanceTolerance(0.01),
     TargetAngleTolerance(0.04),
     SearchStepSize(0.16),

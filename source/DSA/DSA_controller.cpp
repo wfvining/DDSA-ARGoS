@@ -28,6 +28,9 @@ void DSA_controller::Init(TConfigurationNode& node) {
     argos::GetNodeAttribute(settings, "NumberOfRobots",          NumberOfRobots);
     argos::GetNodeAttribute(settings, "NumberOfSpirals",         NumberOfSpirals);
     argos::GetNodeAttribute(settings, "SearchStepSize",          SearchStepSize);
+    argos::GetNodeAttribute(settings, "NestDistanceTolerance", NestDistanceTolerance);
+    argos::GetNodeAttribute(settings, "NestAngleTolerance", NestAngleTolerance);
+    argos::GetNodeAttribute(settings, "NestAngleTolerance", NestAngleTolerance);
     argos::GetNodeAttribute(settings, "TargetDistanceTolerance", TargetDistanceTolerance);
     argos::GetNodeAttribute(settings, "TargetAngleTolerance",    TargetAngleTolerance);
     argos::GetNodeAttribute(settings, "SearcherGap",             SearcherGap);
@@ -286,7 +289,13 @@ void DSA_controller::ControlStep()
 	}
       else
 	{
+	  float old_target_distance_tolerance = TargetDistanceTolerance;
+	  argos::CRadians old_target_angle_tolerance = TargetAngleTolerance;
+	  TargetDistanceTolerance = NestDistanceTolerance;
+	  TargetAngleTolerance = NestAngleTolerance;
 	  SetTarget(loopFunctions->NestPosition);
+	  TargetDistanceTolerance = old_target_distance_tolerance;
+	  TargetAngleTolerance = old_target_angle_tolerance;
 	}
     } 
   else if( DSA == RETURN_TO_SEARCH ) 
