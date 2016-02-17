@@ -260,10 +260,18 @@ void DSA_controller::ControlStep()
       SetHoldingFood();
       if (IsHoldingFood())
 	{
-	  ReturnPosition = GetPosition();
-	  ReturnPatternPosition = GetTarget();
-	  DSA = RETURN_TO_NEST;
-	  return;
+	  bool cpf = false; 
+	  if (cpf)
+	    {
+	      ReturnPosition = GetPosition();
+	      ReturnPatternPosition = GetTarget();
+	      DSA = RETURN_TO_NEST;
+	      return;
+	    }
+	  else
+	    {
+	      isHoldingFood = false;
+	    }
 	}
       else
 	{
