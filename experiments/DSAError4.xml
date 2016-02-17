@@ -73,7 +73,7 @@
 
     <DDSA PrintFinalScore = "1"
 	  FoodDistribution = "2"
-	  NestRadius = "0.25"
+	  NestRadius = "1.00"
 	  />
 
   </loop_functions>

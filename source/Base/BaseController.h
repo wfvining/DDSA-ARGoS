@@ -40,6 +40,8 @@ class BaseController : public argos::CCI_Controller {
         argos::Real SimulationSecondsPerTick();
         argos::Real SimulationTimeInSeconds();
 
+	void SetIsHeadingToNest(bool n);
+
         bool IsAtTarget();
 
     protected:
@@ -113,6 +115,8 @@ class BaseController : public argos::CCI_Controller {
         /* collision detection functions */
         bool CollisionDetection();
         argos::CVector2 GetCollisionVector();
+
+	bool heading_to_nest;
 
 };
 

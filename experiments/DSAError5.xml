@@ -32,7 +32,7 @@
         
 	<positioning          implementation = "default"
                                         pos_noise_range= "-0.001:0.001"
-                                        angle_noise_range= "-0.005:0.005"
+                                        angle_noise_range= "-0.001:0.001"
                                         axis_noise_range= "-0.0001:0.0001"
 					/>	
 
@@ -53,8 +53,8 @@
                   NumberOfSpirals         = "30"
                   NestDistanceTolerance = "0.01"  
                   NestAngleTolerance = "0.05"  
-                  TargetDistanceTolerance = "0.01"  
-                  TargetAngleTolerance = "0.05"
+                  TargetDistanceTolerance = "1.0"  
+                  TargetAngleTolerance = "1.0"
                   FoodDistanceTolerance   = "0.13"
                   SearcherGap             = "0.18"
 		  SearchStepSize          = "0.08"

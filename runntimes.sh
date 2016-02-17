@@ -1,4 +1,5 @@
 #!/bin/bash
+rm results.txt
 for ((i=1;i<=$1;i++))
 do
     echo "Running $i of $1"

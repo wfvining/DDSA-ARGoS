@@ -272,6 +272,7 @@ void DSA_controller::ControlStep()
     } 
   else if( DSA == RETURN_TO_NEST) 
     {
+      SetIsHeadingToNest(true);
       // Check if we reached the nest. If so record that we dropped food off and go back to the spiral
       if((GetPosition() - loopFunctions->NestPosition).SquareLength() < loopFunctions->NestRadiusSquared) 
 	{
@@ -279,7 +280,8 @@ void DSA_controller::ControlStep()
 	  DSA = RETURN_TO_SEARCH;
 	  num_targets_collected++;
 	  loopFunctions->setScore(num_targets_collected);
-	  
+	  SetIsHeadingToNest(false);
+
 	  /*
 	  ofstream results_output_stream;
 	  results_output_stream.open(results_full_path, ios::app);
@@ -289,13 +291,7 @@ void DSA_controller::ControlStep()
 	}
       else
 	{
-	  float old_target_distance_tolerance = TargetDistanceTolerance;
-	  argos::CRadians old_target_angle_tolerance = TargetAngleTolerance;
-	  TargetDistanceTolerance = NestDistanceTolerance;
-	  TargetAngleTolerance = NestAngleTolerance;
 	  SetTarget(loopFunctions->NestPosition);
-	  TargetDistanceTolerance = old_target_distance_tolerance;
-	  TargetAngleTolerance = old_target_angle_tolerance;
 	}
     } 
   else if( DSA == RETURN_TO_SEARCH ) 

@@ -32,7 +32,7 @@
         
 	<positioning          implementation = "default"
                                         pos_noise_range= "-0.001:0.001"
-                                        angle_noise_range= "-0.005:0.005"
+                                        angle_noise_range= "-0.05:0.05"
                                         axis_noise_range= "-0.0001:0.0001"
 					/>	
 
@@ -53,7 +53,7 @@
                   NumberOfSpirals         = "30"
                   NestDistanceTolerance = "0.01"  
                   NestAngleTolerance = "0.05"  
-                  TargetDistanceTolerance = "0.01"  
+                  TargetDistanceTolerance = "0.05"  
                   TargetAngleTolerance = "0.05"
                   FoodDistanceTolerance   = "0.13"
                   SearcherGap             = "0.18"
@@ -73,7 +73,7 @@
 
     <DDSA PrintFinalScore = "1"
 	  FoodDistribution = "2"
-	  NestRadius = "0.25"
+	  NestRadius = "1.00"
 	  />
 
   </loop_functions>
