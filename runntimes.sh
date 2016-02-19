@@ -1,7 +1,6 @@
 #!/bin/bash
-rm results.txt
 for ((i=1;i<=$1;i++))
 do
     echo "Running $i of $1"
-   argos3 -l argos_log.txt -c experiments/DSA.xml >> results.txt
+    time argos3 -l argos_log.txt -c $2 >> $3
 done
