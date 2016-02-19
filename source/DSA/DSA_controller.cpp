@@ -266,6 +266,7 @@ void DSA_controller::ControlStep()
 	      ReturnPosition = GetPosition();
 	      ReturnPatternPosition = GetTarget();
 	      DSA = RETURN_TO_NEST;
+<<<<<<< HEAD
 	    }
 	  else
 	    {
@@ -275,6 +276,14 @@ void DSA_controller::ControlStep()
 	    }
 
 	  return;
+=======
+	      return;
+	    }
+	  else
+	    {
+	      isHoldingFood = false;
+	    }
+>>>>>>> fa99fc182213cf26ad3d7fe9823f9e859bd3d4b9
 	}
       else
 	{
