@@ -40,6 +40,7 @@ CSimulator     *simulator     = &GetSimulator();
  argos::TConfigurationNode DDSA_node = argos::GetNode(node, "DDSA");
  argos::GetNodeAttribute(DDSA_node, "PrintFinalScore",                   PrintFinalScore);
  argos::GetNodeAttribute(DDSA_node, "FoodDistribution",                  FoodDistribution);
+ argos::GetNodeAttribute(DDSA_node, "FoodItemCount",                  FoodItemCount);
  argos::GetNodeAttribute(DDSA_node, "NestRadius",                 NestRadius);
 
  NestRadiusSquared = NestRadius*NestRadius;
@@ -75,11 +76,16 @@ double DSA_loop_functions::Score()
 void DSA_loop_functions::setScore(double s)
 {
   score = s;
+  if (score >= FoodItemCount) 
+    {
+      PostExperiment();
+      exit(0);
+    }
 }
 
 void DSA_loop_functions::PostExperiment() 
 {
-  if (PrintFinalScore == 1) printf("%f\n", score);
+  if (PrintFinalScore == 1) printf("%f, %f\n", getSimTimeInSeconds(), score);
 }
 
 

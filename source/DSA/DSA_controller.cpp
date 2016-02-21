@@ -260,7 +260,7 @@ void DSA_controller::ControlStep()
       SetHoldingFood();
       if (IsHoldingFood())
 	{
-	  bool cpf = false; 
+	  bool cpf = true; 
 	  if (cpf)
 	    {
 	      ReturnPosition = GetPosition();
@@ -287,11 +287,15 @@ void DSA_controller::ControlStep()
       // Check if we reached the nest. If so record that we dropped food off and go back to the spiral
       if((GetPosition() - loopFunctions->NestPosition).SquareLength() < loopFunctions->NestRadiusSquared) 
 	{
-	  isHoldingFood = false;
 	  DSA = RETURN_TO_SEARCH;
-	  num_targets_collected++;
-	  loopFunctions->setScore(num_targets_collected);
+	  if (isHoldingFood)
+	    {
+	      num_targets_collected++;
+	      loopFunctions->setScore(num_targets_collected);
+	    }
+
 	  SetIsHeadingToNest(false);
+	  isHoldingFood = false;
 
 	  /*
 	  ofstream results_output_stream;
