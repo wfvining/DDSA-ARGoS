@@ -26,7 +26,7 @@
       <sensors>
         <footbot_proximity    implementation = "default" show_rays = "false"/>
 
-	<positioning          implementation = "default"/>
+	
 
 
         

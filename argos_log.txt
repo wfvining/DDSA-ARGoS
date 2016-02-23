@@ -10,20 +10,11 @@
 [INFO] Loaded library "/usr/lib/argos3/libargos3plugin_simulator_pointmass3d.so"
 [INFO] Loaded library "/usr/lib/argos3/libargos3plugin_simulator_footbot.so"
 [INFO] Not using threads
-[INFO] Using random seed = 592087
+[INFO] Using random seed = 71159
 [INFO] Using simulation clock tick = 0.03125
-[INFO] Total experiment length in clock ticks = 57600
+[INFO] Total experiment length in clock ticks = 115200
 [INFO] Loaded library "./build/source/DSA/libDSA_controller.so"
 [INFO] Loaded library "./build/source/DSA/libDSA_loop_functions.so"
-Finished Initializing the DDSA
-Finished Initializing the DDSA
-Finished Initializing the DDSA
-Finished Initializing the DDSA
-Finished Initializing the DDSA
-Finished Initializing the DDSA
-Finished Initializing the DDSA
-Finished Initializing the DDSA
-Finished Initializing the DDSA
 Finished Initializing the DDSA
 Finished Initializing the DDSA
 Finished Initializing the DDSA

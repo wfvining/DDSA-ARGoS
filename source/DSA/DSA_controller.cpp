@@ -38,6 +38,7 @@ void DSA_controller::Init(TConfigurationNode& node) {
     argos::GetNodeAttribute(settings, "RobotForwardSpeed",       RobotForwardSpeed);
     argos::GetNodeAttribute(settings, "RobotRotationSpeed",      RobotRotationSpeed);
     argos::GetNodeAttribute(settings, "ResultsDirectoryPath",      results_path);
+    argos::GetNodeAttribute(settings, "DestinationNoiseStdev",      DestinationNoiseStdev);
 
     FoodDistanceTolerance *= FoodDistanceTolerance;
 
@@ -327,7 +328,8 @@ void DSA_controller::ControlStep()
 /*****
  * Sets target North of the robot's current target.
  *****/
-void DSA_controller::SetTargetN(char x){
+void DSA_controller::SetTargetN(char x)
+{
     CVector2 position = GetTarget();
     SetTarget(CVector2(position.GetX()+SearcherGap,position.GetY()));
 }
