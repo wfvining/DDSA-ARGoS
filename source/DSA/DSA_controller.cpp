@@ -314,6 +314,7 @@ void DSA_controller::ControlStep()
 	}
       else
 	{
+	  SetIsHeadingToNest(true);
 	  SetTarget(loopFunctions->NestPosition);
 	}
     } 
@@ -333,6 +334,7 @@ void DSA_controller::ControlStep()
       if ( IsAtTarget() )
 	{
 	  //argos::LOG << "RETURN_TO_SEARCH: Pattern Point" << std::endl;
+	  SetIsHeadingToNest(false);
 	  SetTarget(ReturnPatternPosition);
 	  DSA = SEARCHING;
 	}
@@ -347,6 +349,7 @@ void DSA_controller::ControlStep()
 void DSA_controller::SetTargetN(char x)
 {
     CVector2 position = GetTarget();
+    SetIsHeadingToNest(false);
     SetTarget(CVector2(position.GetX()+SearcherGap,position.GetY()));
 }
 
@@ -355,6 +358,7 @@ void DSA_controller::SetTargetN(char x)
  *****/
 void DSA_controller::SetTargetS(char x){
     CVector2 position = GetTarget();
+    SetIsHeadingToNest(false);
     SetTarget(CVector2(position.GetX()-SearcherGap,position.GetY()));
 }
 
@@ -363,6 +367,7 @@ void DSA_controller::SetTargetS(char x){
  *****/
 void DSA_controller::SetTargetE(char x){
    CVector2 position = GetTarget();
+   SetIsHeadingToNest(false);
    SetTarget(CVector2(position.GetX(),position.GetY()-SearcherGap));
 }
 
@@ -371,6 +376,7 @@ void DSA_controller::SetTargetE(char x){
  *****/
 void DSA_controller::SetTargetW(char x){
     CVector2 position = GetTarget();
+    SetIsHeadingToNest(false);
     SetTarget(CVector2(position.GetX(),position.GetY()+SearcherGap));
 }
 
@@ -467,6 +473,7 @@ bool DSA_controller::IsHoldingFood() {
  *****/
 void DSA_controller::Reset() {
     collisionDelay  = 0;
+    SetIsHeadingToNest(true);
     SetTarget(loopFunctions->NestPosition);
     tempPattern.clear();
     CopyPatterntoTemp();
