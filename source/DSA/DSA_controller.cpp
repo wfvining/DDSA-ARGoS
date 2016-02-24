@@ -39,7 +39,7 @@ void DSA_controller::Init(TConfigurationNode& node) {
     argos::GetNodeAttribute(settings, "RobotRotationSpeed",      RobotRotationSpeed);
     argos::GetNodeAttribute(settings, "ResultsDirectoryPath",      results_path);
     argos::GetNodeAttribute(settings, "DestinationNoiseStdev",      DestinationNoiseStdev);
-
+    argos::GetNodeAttribute(settings, "PositionNoiseStdev",      PositionNoiseStdev);
     FoodDistanceTolerance *= FoodDistanceTolerance;
 
     argos::CVector2 p(GetPosition());
@@ -241,6 +241,8 @@ void DSA_controller::CopyPatterntoTemp()
  *****/
 void DSA_controller::ControlStep() 
 {
+
+  // To draw paths
   if (DSA == SEARCHING)
     {
       CVector3 position3d(GetPosition().GetX(), GetPosition().GetY(), 0.00);
@@ -255,9 +257,11 @@ void DSA_controller::ControlStep()
   //LOG << myTrail.size() << endl;
   previous_position = GetPosition();
 
-  /* If it didn't continue in a sprial */
+  /* Continue in a sprial */
   if( DSA == SEARCHING )
     {
+      SetIsHeadingToNest(false);
+      //  argos::LOG << "SEARCHING" << std::endl;
       SetHoldingFood();
       if (IsHoldingFood())
 	{
@@ -284,18 +288,21 @@ void DSA_controller::ControlStep()
     } 
   else if( DSA == RETURN_TO_NEST) 
     {
+      //argos::LOG << "RETURN_TO_NEST" << std::endl;
       SetIsHeadingToNest(true);
       // Check if we reached the nest. If so record that we dropped food off and go back to the spiral
       if((GetPosition() - loopFunctions->NestPosition).SquareLength() < loopFunctions->NestRadiusSquared) 
 	{
 	  DSA = RETURN_TO_SEARCH;
+	  SetIsHeadingToNest(false);
+	  SetTarget(ReturnPosition);
+
 	  if (isHoldingFood)
 	    {
 	      num_targets_collected++;
 	      loopFunctions->setScore(num_targets_collected);
 	    }
 
-	  SetIsHeadingToNest(false);
 	  isHoldingFood = false;
 
 	  /*
@@ -312,11 +319,20 @@ void DSA_controller::ControlStep()
     } 
   else if( DSA == RETURN_TO_SEARCH ) 
     {
-      SetTarget(ReturnPosition);
+      // argos::LOG << "RETURN_TO_SEARCH" << std::endl;
+      SetIsHeadingToNest(false);
+      
 
+      //argos::LOG << "Return Position:" << ReturnPosition << endl;
+      //argos::LOG << "Robot position:" << GetPosition() << endl;
+      //argos::LOG << "Target position:" << GetTarget() << endl;
+      //argos::LOG << "Distance:" << (GetPosition() - ReturnPosition).Length() << endl;
+      //argos::LOG << "Distance Tolerance:" << TargetDistanceTolerance << endl;
+      
       // Check if we have reached the return position
-      if ( TargetHit() )
+      if ( IsAtTarget() )
 	{
+	  //argos::LOG << "RETURN_TO_SEARCH: Pattern Point" << std::endl;
 	  SetTarget(ReturnPatternPosition);
 	  DSA = SEARCHING;
 	}
@@ -423,9 +439,9 @@ void DSA_controller::SetHoldingFood(){
         size_t i = 0;
         for (i = 0; i < loopFunctions->FoodList.size(); i++)
 	  {
-            if ((GetPosition()-loopFunctions->FoodList[i]).SquareLength() < FoodDistanceTolerance)
+            if ((GetPosition()-loopFunctions->FoodList[i]).SquareLength() < FoodDistanceTolerance && !isHoldingFood)
 	      {
-	      isHoldingFood = true;
+		isHoldingFood = true;
 	      } 
 	    else 
 	      {
