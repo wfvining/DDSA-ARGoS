@@ -7,7 +7,7 @@
   <!-- ************************* -->
   <framework>
     <system     threads="0" />
-    <experiment length="1800"
+    <experiment length="3600"
                 ticks_per_second="32" />
                 
   </framework>
@@ -56,7 +56,7 @@
 		  SearchStepSize          = "0.08"
                   RobotForwardSpeed       = "16.0"
                   RobotRotationSpeed      = "8.0"
-		  DestinationNoiseStdev = "2.0"
+		  DestinationNoiseStdev = "0.0"
 		  PositionNoiseStdev = "0.0"
 		  ResultsDirectoryPath = "results/"/>
 	          
@@ -69,8 +69,8 @@
   <loop_functions library = "build/source/DSA/libDSA_loop_functions"
                   label   = "DSA_loop_functions">
 
-    <DDSA PrintFinalScore = "1" FoodItemCount = "256"
-	  FoodDistribution = "2"
+    <DDSA PrintFinalScore = "1" FoodItemCount = "40"
+	  FoodDistribution = "0"
 	  NestRadius = "0.25"
 	  />
 
@@ -114,14 +114,14 @@
   <!-- * Visualization * -->
   <!-- ****************** -->
   <visualization>
-
+<!--
     <qt-opengl>
       <camera>
         <placement idx="0" position="  0, 0, 10" look_at="0, 0, 0" lens_focal_length="25"/>
       </camera>
       <user_functions label="DSA_qt_user_functions"/>
     </qt-opengl>
-
+-->
   </visualization>
 
 </argos-configuration>

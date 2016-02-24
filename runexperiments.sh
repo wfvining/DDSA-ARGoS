@@ -1,31 +1,21 @@
-#!/bin/bash
-for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+%#!/bin/bash
+for i in 1 2 4 6 8 10 15 20 25 30
 do
-    ./runntimes.sh $1 experiments/DSAPL${i}Searcher.xml final_results/DSAPL${i}Searchers.txt
+    ./runntimes.sh $1 experiments/DDSAPL${i}Searcher.xml results/DDSAPL${i}Searchers.txt
 done
 
-for i in 0 1 2 3 4 5 6 7 8 9 10
+for i in 0 2 4 6 8 10 15 20 25 30
 do
-    ./runntimes.sh $1 experiments/DSAPLError${i}.xml final_results/DSAPLError${i}.txt
+    ./runntimes.sh $1 experiments/DDSAPLError${i}.xml results/DDSAPLError${i}.txt
 done
 
-for i in 0 1 2 3 4 5 6 7 8 9 10
+for i in 20 40 60 80 100 150 200 250
 do
-    ./runntimes.sh $1 experiments/DSACError${i}.xml final_results/DSACError${i}.txt
+    ./runntimes.sh $1 experiments/DDSAU60minTargets${i}.xml results/DDSAU60minTargets${i}.txt
 done
 
-for i in 0 1 2 3 4 5 6 7 8 9 10
+for i in 10 12 14 16 18 20
 do
-    ./runntimes.sh $1 experiments/DSAUError${i}.xml final_results/DSAUError${i}.txt
-done
-
-for i in 20 40 60 80 100 120 140 160 180 200 220 240 260
-do
-    ./runntimes.sh $1 experiments/DSAU60minTargets${i}.xml final_results/DSAU60minTargets${i}.txt
-done
-
-for i in 5 6 7 8 9 10 11 12 13 14 15
-do
-    ./runntimes.sh $1 experiments/DSAU60minSize${i}x${i}.xml final_results/DSAU60minSize${i}x${i}.txt
+    ./runntimes.sh $1 experiments/DDSAU60minSize${i}x${i}.xml results/DDSAU60minSize${i}x${i}.txt
 done
 
