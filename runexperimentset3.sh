@@ -1,5 +1,5 @@
 #!/bin/bash
-for i in 0 1 2 3 4 5 6 7 8 9 10
+for i in 20 40 60 80 100 150 200 250
 do
-    ./runntimes.sh 25 experiments/DDSACError${i}.xml results/DDSACError${i}.txt
+    ./runntimes.sh $1 experiments/DDSAU60minTargets${i}.xml results/DDSAU60minTargets${i}.txt
 done

@@ -45,7 +45,7 @@
       <params>
 
 	<!-- Modify TargetDistanceTolerance to Simulate Error -->
-        <settings NumberOfRobots          = "6"
+        <settings NumberOfRobots          = "10"
                   NumberOfSpirals         = "30"
                   NestDistanceTolerance = "0.01"  
                   NestAngleTolerance = "0.05"  
