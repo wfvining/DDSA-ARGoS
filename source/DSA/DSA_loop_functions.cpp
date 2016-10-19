@@ -139,110 +139,208 @@ void DSA_loop_functions::RandomFoodDistribution() {
     }
 }
 
-/*****
- *
- *****/
 void DSA_loop_functions::ClusterFoodDistribution() {
+    FoodList.clear();
+    
+	argos::Real     foodOffset  = 3.0 * FoodRadius;
+	size_t          foodToPlace = FoodItemCount;//Wayne: Changed since no longer necessary
+	size_t          foodPlaced = 0;
+	argos::CVector2 placementPosition;
 
-    argos::Real     foodOffset  = 3.0 * FoodRadius;
-    size_t          foodToPlace = NumberOfClusters * ClusterWidthX * ClusterLengthY;
-    size_t          foodPlaced = 0;
-    argos::CVector2 placementPosition;
+    FindClusterLengthWidth();//Wayne: sets cluster sides (X,Y)
 
-    FoodItemCount = foodToPlace;
-
-    for(size_t i = 0; i < NumberOfClusters; i++) {
-        placementPosition.Set(RNG->Uniform(ForageRangeX), RNG->Uniform(ForageRangeY));
-
-        while(IsOutOfBounds(placementPosition, ClusterLengthY, ClusterWidthX)) {
-            placementPosition.Set(RNG->Uniform(ForageRangeX), RNG->Uniform(ForageRangeY));
-        }
-
-        for(size_t j = 0; j < ClusterLengthY; j++) {
-            for(size_t k = 0; k < ClusterWidthX; k++) {
-
-                foodPlaced++;
-                /*
-                #include <argos3/plugins/simulator/entities/box_entity.h>
-
-                string label("my_box_");
-                label.push_back('0' + foodPlaced++);
-
-                CBoxEntity *b = new CBoxEntity(label,
-                                               CVector3(placementPosition.GetX(), placementPosition.GetY(), 0.0),
-                                               CQuaternion(),
-                                               true,
-                                               CVector3(0.1, 0.1, 0.001),
-                                               1.0);
-                AddEntity(*b);
-                */
-
-                FoodList.push_back(placementPosition);
-                FoodColoringList.push_back(argos::CColor::BLACK);
-                placementPosition.SetX(placementPosition.GetX() + foodOffset);
-
-            }
-
-            placementPosition.SetX(placementPosition.GetX() - (ClusterWidthX * foodOffset));
-            placementPosition.SetY(placementPosition.GetY() + foodOffset);
-        }
+    //-----Wayne: Creates vector of number of food in each cluster
+    size_t index = 0;
+    size_t ClusterFoodCount = 0;
+    size_t foodCount = 0;
+    vector <size_t> FoodClusterCount;
+    
+    //initialize vector
+    for (int i = 0; i < NumberOfClusters; i++){
+        FoodClusterCount.push_back(0);
     }
+    
+    //add food
+    while (foodCount < FoodItemCount){
+        FoodClusterCount[index] = FoodClusterCount[index]+ 1;
+        foodCount++;
+        index++;
+        if (index == NumberOfClusters) index = 0;
+        
+    }
+    
+    //make vector cumulative in food
+    for (int i = 1; i < NumberOfClusters; i++){
+        FoodClusterCount[i] += FoodClusterCount[i - 1];
+    }
+    //------Wayne: end of vector creation
+    
+	for(size_t i = 0; i < NumberOfClusters; i++) {
+		placementPosition.Set(RNG->Uniform(ForageRangeX), RNG->Uniform(ForageRangeY));
+
+		while(IsOutOfBounds(placementPosition, ClusterLengthY, ClusterWidthX)) {
+			placementPosition.Set(RNG->Uniform(ForageRangeX), RNG->Uniform(ForageRangeY));
+		}
+        
+        /*Wayne: Modified to break from loops if food count reached.
+         Provides support for unequal clusters and odd food numbers.
+         Necessary for DustUp and Jumble Distribution changes. */
+        
+		for(size_t j = 0; j < ClusterLengthY; j++) {
+			for(size_t k = 0; k < ClusterWidthX; k++) {
+				foodPlaced++;
+				/*
+				#include <argos3/plugins/simulator/entities/box_entity.h>
+
+				string label("my_box_");
+				label.push_back('0' + foodPlaced++);
+
+				CBoxEntity *b = new CBoxEntity(label,
+					CVector3(placementPosition.GetX(),
+					placementPosition.GetY(), 0.0), CQuaternion(), true,
+					CVector3(0.1, 0.1, 0.001), 1.0);
+				AddEntity(*b);
+				*/
+
+				FoodList.push_back(placementPosition);
+				FoodColoringList.push_back(argos::CColor::BLACK);
+				placementPosition.SetX(placementPosition.GetX() + foodOffset);
+                if (foodPlaced == FoodClusterCount[i]) break;
+			}
+
+			placementPosition.SetX(placementPosition.GetX() - (ClusterWidthX * foodOffset));
+			placementPosition.SetY(placementPosition.GetY() + foodOffset);
+            if (foodPlaced == FoodClusterCount[i]) break;
+		}
+        if (foodPlaced == FoodItemCount) break;
+	}
 }
 
-/*****
- *
- *****/
 void DSA_loop_functions::PowerLawFoodDistribution() {
+	FoodList.clear();
+    
     argos::Real foodOffset     = 3.0 * FoodRadius;
-    size_t      foodPlaced     = 0;
-    size_t      powerLawLength = 1;
-    size_t      maxTrials      = 200;
-    size_t      trialCount     = 0;
+	size_t      foodPlaced     = 0;
+	size_t      powerLawLength = 1;
+	size_t      maxTrials      = 200;
+	size_t      trialCount     = 0;
 
-    std::vector<size_t> powerLawClusters;
-    std::vector<size_t> clusterSides;
-    argos::CVector2     placementPosition;
-
-    for(size_t i = 0; i < PowerRank; i++) {
-        powerLawClusters.push_back(powerLawLength * powerLawLength);
-        powerLawLength *= 2;
+	std::vector<size_t> powerLawClusters;
+	std::vector<size_t> clusterSides;
+	argos::CVector2     placementPosition;
+    
+    //-----Wayne: Dertermine PowerRank and food per PowerRank group
+    size_t priorPowerRank = 0;
+    size_t power4 = 0;
+    size_t FoodCount = 0;
+    size_t diffFoodCount = 0;
+    size_t singleClusterCount = 0;
+    size_t otherClusterCount = 0;
+    size_t modDiff = 0;
+    
+    //Wayne: priorPowerRank is determined by what power of 4
+    //plus a multiple of power4 increases the food count passed required count
+    //this is how powerlaw works to divide up food into groups
+    //the number of groups is the powerrank
+    while (FoodCount < FoodItemCount){
+        priorPowerRank++;
+        power4 = pow (4.0, priorPowerRank);
+        FoodCount = power4 + priorPowerRank * power4;
     }
-
-    for(size_t i = 0; i < PowerRank; i++) {
-        powerLawLength /= 2;
-        clusterSides.push_back(powerLawLength);
+    
+    //Wayne: Actual powerRank is prior + 1
+    PowerRank = priorPowerRank + 1;
+    
+    //Wayne: Equalizes out the amount of food in each group, with the 1 cluster group taking the
+    //largest loss if not equal, when the powerrank is not a perfect fit with the amount of food.
+    diffFoodCount = FoodCount - FoodItemCount;
+    modDiff = diffFoodCount % PowerRank;
+    
+    if (FoodItemCount % PowerRank == 0){
+        singleClusterCount = FoodItemCount / PowerRank;
+        otherClusterCount = singleClusterCount;
     }
-
-    for(size_t h = 0; h < powerLawClusters.size(); h++) {
-        for(size_t i = 0; i < powerLawClusters[h]; i++) {
-            placementPosition.Set(RNG->Uniform(ForageRangeX), RNG->Uniform(ForageRangeY));
-
-            while(IsOutOfBounds(placementPosition, clusterSides[h], clusterSides[h])) {
-                trialCount++;
-                placementPosition.Set(RNG->Uniform(ForageRangeX), RNG->Uniform(ForageRangeY));
-
-                if(trialCount > maxTrials) {
-                    argos::LOGERR << "PowerLawDistribution(): Max trials exceeded!\n";
-                    break;
-                }
-            }
-
-            for(size_t j = 0; j < clusterSides[h]; j++) {
-                for(size_t k = 0; k < clusterSides[h]; k++) {
-                    foodPlaced++;
-                    FoodList.push_back(placementPosition);
-                    FoodColoringList.push_back(argos::CColor::BLACK);
-                    placementPosition.SetX(placementPosition.GetX() + foodOffset);
-                }
-
-                placementPosition.SetX(placementPosition.GetX() - (clusterSides[h] * foodOffset));
-                placementPosition.SetY(placementPosition.GetY() + foodOffset);
-            }
-        }
+    else {
+        otherClusterCount = FoodItemCount / PowerRank + 1;
+        singleClusterCount = otherClusterCount - modDiff;
     }
+    //-----Wayne: End of PowerRank and food per PowerRank group
+    
+	for(size_t i = 0; i < PowerRank; i++) {
+		powerLawClusters.push_back(powerLawLength * powerLawLength);
+		powerLawLength *= 2;
+	}
+    
+	for(size_t i = 0; i < PowerRank; i++) {
+		powerLawLength /= 2;
+		clusterSides.push_back(powerLawLength);
+	}
 
-    FoodItemCount = foodPlaced;
+    /*Wayne: Modified to break from loops if food count reached.
+     Provides support for unequal clusters and odd food numbers.
+     Necessary for DustUp and Jumble Distribution changes. */
+    
+	for(size_t h = 0; h < powerLawClusters.size(); h++) {
+		for(size_t i = 0; i < powerLawClusters[h]; i++) {
+			placementPosition.Set(RNG->Uniform(ForageRangeX), RNG->Uniform(ForageRangeY));
+
+			while(IsOutOfBounds(placementPosition, clusterSides[h], clusterSides[h])) {
+				trialCount++;
+				placementPosition.Set(RNG->Uniform(ForageRangeX), RNG->Uniform(ForageRangeY));
+
+				if(trialCount > maxTrials) {
+					argos::LOGERR << "PowerLawDistribution(): Max trials exceeded!\n";
+					break;
+				}
+			}
+
+            trialCount = 0;
+			for(size_t j = 0; j < clusterSides[h]; j++) {
+				for(size_t k = 0; k < clusterSides[h]; k++) {
+					foodPlaced++;
+					FoodList.push_back(placementPosition);
+					FoodColoringList.push_back(argos::CColor::BLACK);
+					placementPosition.SetX(placementPosition.GetX() + foodOffset);
+                    if (foodPlaced == singleClusterCount + h * otherClusterCount) break;
+				}
+
+				placementPosition.SetX(placementPosition.GetX() - (clusterSides[h] * foodOffset));
+				placementPosition.SetY(placementPosition.GetY() + foodOffset);
+                if (foodPlaced == singleClusterCount + h * otherClusterCount) break;
+			}
+            if (foodPlaced == singleClusterCount + h * otherClusterCount) break;
+		}
+	}
+    
 }
+
+
+//Wayne: makes as square a cluster as it can
+void DSA_loop_functions::FindClusterLengthWidth(){
+    
+    size_t tempClusterAreaCount = 0;
+    size_t tempFoodItemCount =  FoodItemCount;
+    
+    while (tempFoodItemCount % NumberOfClusters != 0){
+        tempFoodItemCount++;
+    }
+    
+    //Find number of seeds in cluster
+    size_t ClusterAreaCount = tempFoodItemCount / NumberOfClusters;
+    
+    //Find square root (max for both sides)
+    size_t x =  sqrt(ClusterAreaCount);
+    
+    if (ClusterAreaCount % x != 0 || (x == 1 && FoodItemCount > NumberOfClusters)){
+        ClusterLengthY = x + 1;
+        ClusterWidthX = x + 1;
+    }
+    else {
+        ClusterWidthX = x;
+        ClusterLengthY = x;
+    }
+}
+
 
 /*****
  *
