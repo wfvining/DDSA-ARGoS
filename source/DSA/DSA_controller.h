@@ -53,6 +53,7 @@ class DSA_controller : public BaseController {
         vector<CRay3>       myTrail;
         CColor              TrailColor;
 
+	Real                ProbTargetDetection;
         Real                SearcherGap;
         Real                FoodDistanceTolerance;
        	CVector2            previous_position;

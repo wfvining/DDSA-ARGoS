@@ -40,6 +40,7 @@ void DSA_controller::Init(TConfigurationNode& node) {
     argos::GetNodeAttribute(settings, "ResultsDirectoryPath",      results_path);
     argos::GetNodeAttribute(settings, "DestinationNoiseStdev",      DestinationNoiseStdev);
     argos::GetNodeAttribute(settings, "PositionNoiseStdev",      PositionNoiseStdev);
+    argos::GetNodeAttribute(settings, "ProbTargetDetection",      ProbTargetDetection);
     FoodDistanceTolerance *= FoodDistanceTolerance;
 
     argos::CVector2 p(GetPosition());
@@ -441,6 +442,8 @@ void DSA_controller::SetTargetW(char x){
 void DSA_controller::SetHoldingFood(){
     if(IsHoldingFood() == false) 
       {
+	if(rand()*1.0/RAND_MAX < ProbTargetDetection) {
+	
         vector <CVector2> newFoodList; 
         size_t i = 0;
         for (i = 0; i < loopFunctions->FoodList.size(); i++)
@@ -455,6 +458,7 @@ void DSA_controller::SetHoldingFood(){
 	      }
         } 
         loopFunctions->FoodList = newFoodList;
+      }
       }
 
 }
