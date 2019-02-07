@@ -249,10 +249,10 @@ void DSA_controller::ControlStep()
       CVector3 position3d(GetPosition().GetX(), GetPosition().GetY(), 0.00);
       CVector3 target3d(previous_position.GetX(), previous_position.GetY(), 0.00);
       CRay3 targetRay(target3d, position3d);
-      myTrail.push_back(targetRay);
+      // myTrail.push_back(targetRay);
   
-      loopFunctions->TargetRayList.push_back(targetRay);
-      loopFunctions->TargetRayColorList.push_back(TrailColor);
+      // loopFunctions->TargetRayList.push_back(targetRay);
+      // loopFunctions->TargetRayColorList.push_back(TrailColor);
     }
 
   //LOG << myTrail.size() << endl;

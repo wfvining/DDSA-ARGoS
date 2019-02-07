@@ -44,6 +44,9 @@ CSimulator     *simulator     = &GetSimulator();
  argos::GetNodeAttribute(DDSA_node, "NestRadius",                 NestRadius);
  argos::GetNodeAttribute(DDSA_node, "FoodBoundsWidth",                 FoodBoundsWidth);
  argos::GetNodeAttribute(DDSA_node, "FoodBoundsHeight",                 FoodBoundsHeight);
+ argos::GetNodeAttribute(DDSA_node, "ClusterWidthX", ClusterWidthX);
+ argos::GetNodeAttribute(DDSA_node, "ClusterLengthY", ClusterLengthY);
+ argos::GetNodeAttribute(DDSA_node, "NumberOfClusters", NumberOfClusters);
 
  NestRadiusSquared = NestRadius*NestRadius;
 
