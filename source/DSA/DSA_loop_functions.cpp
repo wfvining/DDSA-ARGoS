@@ -74,6 +74,18 @@ CSimulator     *simulator     = &GetSimulator();
 	SetFoodDistribution();
 }
 
+double DSA_loop_functions::calculatePerfectTime() const
+{
+   double total_time = 0;
+   double robotSpeed = 0.16; // 16 cm/s
+   for(argos::CVector2 f : FoodList)
+   {
+      double distance = f.Length();
+      double time_to_retrieve = 2*robotSpeed*distance;
+      total_time += time_to_retrieve;
+   }
+   return total_time;
+}
 
 double DSA_loop_functions::Score()
 {  
@@ -93,7 +105,7 @@ void DSA_loop_functions::setScore(double s)
 
 void DSA_loop_functions::PostExperiment() 
 {
-  if (PrintFinalScore == 1) printf("%f, %f\n", getSimTimeInSeconds(), score);
+   if (PrintFinalScore == 1) printf("%f %f\n", perfectTime, getSimTimeInSeconds());
 }
 
 
@@ -125,6 +137,7 @@ void DSA_loop_functions::SetFoodDistribution() {
         default:
             argos::LOGERR << "ERROR: Invalid food distribution in XML file.\n";
     }
+    perfectTime = calculatePerfectTime();
 }
 
 /*****

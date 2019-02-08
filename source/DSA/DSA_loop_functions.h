@@ -92,9 +92,11 @@ class DSA_loop_functions : public argos::CLoopFunctions {
         bool IsOutOfBounds(argos::CVector2 p, size_t length, size_t width);
         bool IsCollidingWithNest(argos::CVector2 p);
         bool IsCollidingWithFood(argos::CVector2 p);
+   double calculatePerfectTime() const;
 
 	double score;
 	int PrintFinalScore;
+   double perfectTime;
 };
 
 #endif /* DSA_LOOP_FUNCTIONS_H */

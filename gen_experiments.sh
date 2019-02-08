@@ -19,7 +19,7 @@ then
 fi
 mkdir results_${tag}
 
-iterations=5
+iterations=10
 let seed=$RANDOM
 
 for size in 10 20 40 80 160 320
