@@ -19,18 +19,18 @@ then
 fi
 mkdir results_${tag}
 
-iterations=10
+iterations=5
 let seed=$RANDOM
 
-for size in 10 20 40 80 160 320
+for size in 10 20 40 60 80 100
 do
     for clustersize in 4 8 16
     do
-        for r in 1.6 1.2 0.8 0.6 0.4 0.3 0.2 0.15 0.1
+        for r in 0.8 0.2
         do
             for ((i=0; i < $iterations; i++))
             do
-                file=DDSA_n1_c${clustersize}_R${size}_r${r}_${tag}.argos
+                file=DDSA_n1_c${clustersize}_R${size}_r${r}_${tag}_i${i}.argos
                 erb -T - \
                     csize=${clustersize} \
                     size=${size} \
@@ -39,7 +39,8 @@ do
                     n=1 \
                     -- experiments/DDSA_template.argos.erb \
                     >${experimentdir}/${file}
-                echo "argos3 -c ${experimentdir}/$file > results_${tag}/${file}.results"
+                echo "cd ~/research/DDSA-ARGoS; argos3 -c ${experimentdir}/$file > results_${tag}/${file}.results; cd ../.."
+                let seed++
             done
         done
     done

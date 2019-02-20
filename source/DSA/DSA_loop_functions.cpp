@@ -81,8 +81,9 @@ double DSA_loop_functions::calculatePerfectTime() const
    for(argos::CVector2 f : FoodList)
    {
       double distance = f.Length();
-      double time_to_retrieve = 2*robotSpeed*distance;
+      double time_to_retrieve = 2*(distance/robotSpeed);
       total_time += time_to_retrieve;
+      std::cout << "Food at " << f << "(" << f.Length() << ") :: ttr = " << time_to_retrieve << ":: total = " << total_time << std::endl;
    }
    return total_time;
 }
